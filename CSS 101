@@ -1,0 +1,149 @@
+unlike .html css uses .css
+CSS written 3 ways
+    inline with html
+    with internal style
+    external .css
+CSS is a layer on top of html
+can use style as an attribute to an element or make its own element
+within style element (internal CSS)   
+    selector { property: value; p2: value2; }
+    ^ selector ^-declaration-^
+    Example:
+    body {
+        background-color: black;
+        color: red;
+        third: thirdvalue;
+   }
+
+CSS selectors uses intrenal css
+   examples include h1 and p 
+   class selectors is similar to id but is equivalent to . 
+   class can be identified with multiple identifiers with space in between
+   class is case sensitive
+   Selecting element with id should only be used in one instance
+    whereas class is used in multiple instances
+   Group selectors can be used to select mutiple elements for attribute
+   Nested selectors (where strong is within p or other block element)
+        can target by selecting outer and then inner
+        has to be in correct sequence
+
+To comment code use /* this is a CSS Comment */ or use cmd /
+
+To use colors, options include #fff, #000
+   color types involve named, hex colors, rgb/rgba 
+    rgb combines red green and blue in proportion to number 0-255
+        0,0,0 is black
+        rgba adds fourth component in percentage or decimal form
+            the percentage and decimal indicate how see through the text is 
+    To modify a link's color you can use internal css 
+        there is hover, active, and visited states to also be modified
+        a {
+        color: black;
+        text-decoration: underline;
+        }
+        a:hover {
+            color: blue;
+        }
+        a:active {
+            color: red;
+        }
+        a:visited {
+            color: yellowgreen ;
+        }
+
+Changing font size requires font-size: _num_px;
+CSS measurement types (px, em, rems) mostly use px
+change background image with url(" relative or absolute link  ")
+    takes precedence over background-color
+    (use small image) background-size: contain; formats image to the size of body
+        in absence of content then the image repeats over and over
+        can rework the image to cover to expand to the size of the web percentage
+        can be revised to include div instead of body and formatted to fit proportions
+        <style>
+            div {
+                
+                background-image: url("CSS_101_small.jpg");
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+                height: 800px;
+            }
+            </style>
+
+            <body>
+            <div>Formatting the picture</div>
+            </body>
+
+Text alignment (left, center, or right)
+borders allow to see block element
+    div.red-border {
+    border-width: 5px;
+    border-style: dashed;
+    border-color: #f00;
+    border: 1px solid black; (note this overrides the previous three properties)
+    }
+    to make curved borders utilize border-radius and percentage
+    to make rounded borders you can specify corners of borders
+            div.red-border {
+                border-width: 15px;
+                border-style: solid;
+                border-color: #f00;
+                /* border-radius: 50%; */
+                /* border-top-left-radius: 5px;
+                border-top-right-radius: 50%;
+                border-bottom-left-radius: 50%;
+                border-bottom-right-radius: 5px; */
+                border-radius: 5px 50% 5px 50%; 
+                width: 200px;
+                height: 200px;
+            }
+Can change block elements to inline but the borders do not merge
+    div {
+    display: inline-block;
+    border: 1px solid red;
+    width: 200px;
+    height: 200px;
+    }
+            2 div statements within body
+
+can create class first within style element and transpose the corresonding 
+ block element with tab
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        div.half-width {
+            width: 50%;
+        
+        }
+        </style>
+
+        <body>
+        <div class="half-width"></div>
+
+        </body>
+    half width reuires block or inline-block display otherwise inline occupies the length of string
+
+Creating shapes through div and id
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+
+        #box{
+            width: 200px;
+            height: 200px;
+            border: 2px solid black;
+            background-image: url("CSS_101_small.jpg");
+            background-position: center center;
+            background-size: cover;
+            border-radius: 0 50% 0 50% ;
+            box-shadow: 6px 6px 15px inset #444444;
+                          x  y   blur toggle color
+        }
+        </style>
+
+        <body>
+        <div id="box"></div>
+
+        </body>
