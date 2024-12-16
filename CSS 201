@@ -1,0 +1,608 @@
+going into inspect and using new style rule helps negotiate margins and padding further
+    inline and inline block look slightly different
+    and the content is not saved unto the direct code
+
+
+box model allows you to renegotiate padding and border to include the
+    height and width or to exclude from total by using border-box or content- box
+    .box{
+        border: 5px solid red;
+        height: 300px;
+        width: 300px;
+        padding: 30px;
+        box-sizing: border-box; (content box has the absolute dimensions and adds border and padding)
+
+    }
+
+Outlines adds border around border
+    good for visibility (note: outline is not calculated while border is)
+    .box { /* continuing from above */
+
+        outline: 5px solid black;
+        outline-offset: 10px;
+        margin: 30px;
+
+    }
+
+text shadow can be done in internal css
+    text-shadow: x y blur color;
+
+    <style>
+    body {
+        /* background-color: black; */
+    }
+    div.box {
+        font-size: 40px;
+        /* color: rgba(0,0,0,0); */
+        text-shadow: 2px 2px 5px red;
+    }
+    </style>
+    <body>
+    <div class="box">
+        Hello World
+    </div>
+
+Forcing a minimum width on an element
+       div.box {
+        border: 4px solid blue;
+        display: inline-block;
+        min-width: 450px;
+        max-width: 500px;
+        box-sizing: content-box;
+    }
+        </style>
+        <body>
+        <div class="box">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            
+        </div>
+
+CSS positions includes relative, absolute, fixed, and sticky (help website's dynamism by resembling an app)
+    .relative{postion: relative;}
+    .absolute{ postion: absolute;}
+    .fixed{position: fixed;}
+    .sticky{position: sticky;}
+
+  Relative positioning moves relatively from a standard position
+        <style>
+        body {
+            /* background-color: black; */
+        }
+        div.box {
+            width: 300px;
+            heigth: 300px;
+            border: 10px solid black;
+            position: relative;
+            top: 30px;
+            left: 30px;
+        }
+        </style>
+        <body>
+        <div class="box">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            
+        </div>
+  absolute position needs a parental relative element
+        <style>
+            body {
+                /* background-color: black; */
+            }
+            div.box {
+                width: 300px;
+                heigth: 300px;
+                border: 10px solid black;
+                position: relative;
+                top: 30px;
+                left: 30px;
+            }
+        </style>
+        <body>
+        <div class="box">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            
+        </div>
+
+  Fixed positioning allows nav bar to scroll along with the page
+           body {
+        margin: 0;
+        padding: 0;
+        height: 3000px;
+            }
+            div.box {
+                background-color: #f5f5f5;
+                border-bottom: 2px solid #ccc;
+                padding: 20px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                
+                
+            }
+            .break{
+                width: 100px;
+                height: 100px;
+            }
+        
+        </style>
+        <body>
+        <div class="box">
+        This is a header     
+        </div>
+        <div class="break">
+
+        </div>        
+  Sticky positioning is fixed to parent element not course through the whole page like fixed positioning
+            body {
+        margin: 0;
+        padding: 0;
+            }
+            div.box {
+                position: sticky;
+                background-color: #f5f5f5;
+                border-bottom: 2px solid #ccc;
+                padding: 20px;
+                top: 0;
+                color: black;
+                
+                
+            }
+        
+        
+        </style>
+        <body>
+        <div style="background-color: red; color: white;">
+            <div class="box">
+                Section 1     
+                </div>
+            
+Controlling over flow text through overflow: hidden, visible, or auto
+to center block elements use margin-left and margin-right 
+  can also use margin (with two inputs)
+  <style>
+    
+    div.box {
+        border: 4px solid blue;
+        width: 400px;
+        height: 400px;
+        /* margin-right: auto;
+        margin-left: auto; */
+        margin: 50px auto
+        
+        
+    }
+  
+   
+        </style>
+        <body>
+        <div class="box">
+            <p>Lorem ipsum dolor sit amet, 
+                consectetur adipisicing elit. Odit, totam vel modi fugit iusto deleniti a quam praesentium tempore ullam voluptatem distinctio nulla! Quidem earum modi atque quod. Placeat, maxime.
+            </p>
+            
+        </div>
+
+Advanced css selectors include descendant selector and child selector
+  requires space or > sign between the id and class to isolate the selector instead of capturing all elements with the class
+  can select adjacent selector through parent .child + .child
+      #parent .box {
+        border: 4px solid blue;
+        height: 20px;     
+    }
+
+    #parent .box + .box {
+        background-color: red;
+    }
+    #parent .box ~ .box { (selects the same as above)
+        background-color: black;
+    }
+    without the id, the code looks at nested div statements to place the background color
+
+pseudo selector require a colon (:) when used with class
+      .box:hover {
+        background-color: gray;
+    }
+    .box:not(.donotselectme) {
+        background-color: blue;
+    }
+
+    The chronology of the code matters as the above does not permit hover
+      to get the hover active the codes have to be switched
+      .box:not(.donotselectme) {
+        background-color: blue;
+      }
+      .box:hover {
+        background-color: gray;
+      }
+
+pseudo elements utilize two colons (::)
+  before and after pseudo elements act like html elements
+  <style>
+    
+     .box {
+        border: 10px solid black;
+        height: 300px;
+        width: 300px; 
+        margin: 50px auto;
+        position: relative;
+        background-color: black;   
+    }
+
+    .box::before {
+        content: ' ';
+        display: block;
+        border: 10px solid red;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: -30px;
+        left: -30px;
+        z-index: -1;
+
+    }
+    .box::after {
+        content: ' ';
+        display: block;
+        border: 10px solid blue;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        z-index: 10;
+
+    }
+    a {
+        text-decoration: none;
+        color: black;
+        position: relative;
+    }
+
+   a::before {
+    content: ' ';
+    width: 100%;
+    height: 4px;
+    background-color: red;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+   }
+   a:hover::before {
+    height: 14px;
+   }
+    </style>
+    <body>
+    <div class="box"></div>
+    <hr>Lorem ipsum, dolor sit amet consectetur 
+    <a href="">adipisicing elit. Atque excepturi fugit </a>
+    natus hic odio reprehenderit iusto voluptate fugiat,
+    facilis esse sint, magnam aspernatur sed autem, 
+    totam ex ullam porro. Perferendis.
+
+    </body>
+  can change first letter and first line with pseudo elements
+        <style>
+   p::first-letter {
+    font-size: 50px;
+    float:left
+    margin: 5px;
+   }
+   p::first-line {
+    font-weight: bold;
+   }
+  
+    </style>
+    <body>
+    <p>Lorem ipsum dolor sit amet consectetur 
+        adipisicing elit. Et, ad possimus? Sit 
+        iusto repudiandae laborum et consequuntur 
+        sint ratione excepturi asperiores neque
+        id rerum ullam, aliquam reiciendis totam 
+        dignissimos. At.</p>
+
+    </body>
+
+  whenever selecting text you can highlight through
+         ::selection {
+    background-color: green;
+    color: white;
+   }
+
+To add smooth transitions ensure you use selector not pseudo
+<style>
+   a {
+    background-color: #fff;
+    display: inline-block;
+    padding: 5px 15px;
+    color: #000;
+    text-decoration: none;
+    border: 1px solid black;
+    transition: background-color 0.2s,
+                    color 0.5s,
+                    padding 1s;
+   }
+   a:hover {
+    background-color: black;
+    color: #fff;
+    padding: 10px 30px;
+   }
+  
+    </style>
+    <body>
+    <a href="#" class="button">Click me</a>
+
+    </body>
+
+To add gradients use linear gradient or radial gradient. Located within class
+        background-image: linear-gradient(direction, color 1, color2);
+         direction could horizontal or at an angle
+        most use google gradient tool to find the exact css code
+        body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+        }
+
+        body {
+            background-image:linear-gradient(180deg,
+            rgba(0,0,0,0.3) 60%, 
+            rgba(0,0,0,0.8) 100%),
+            url(https://images.unsplash.com/photo-1733721868776-e8070c0bbb20?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+            color: white;
+            font-size: 90px;
+            text-align: center;
+            padding-top: 500px;
+        } 
+    *** Still having trouble with making the image zoom out to its full picture ***
+    *** picture continues to be zoomed in ***
+
+To use custom web fonts you can use fonts.google.com 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+
+        <style>
+
+            body {
+                font-family: "Comic Neue", cursive;
+                font-size: 45px;
+            }
+        </style>
+        <body>
+
+            Lorem ipsum dolor sit amet 
+            consectetur adipisicing elit. 
+            Dignissimos cupiditate officia 
+            laborum molestias itaque, at saepe 
+            enim velit reprehenderit exercitationem 
+            in quo expedita odit ratione rem cum quis 
+            facere quas.
+
+transform translate shifts box according to inputs
+transform rotates box by deg 
+transform scale makes box bigger by a scale
+transform skew skews by deg
+  transform skewX skews by x and skewY by y
+        <style>
+
+    .box {
+        width: 300px;
+        height: 300px;
+        border: 5px solid black;
+        margin: 50px auto;
+
+        /* transform: translate(100px, 100px); */
+        /* transform: rotate(45deg); */
+        /* transform: scale(2); */
+        transform: skew(20deg,20deg);
+
+    }
+        </style>
+        <body>
+        <div class="box">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quam et nam eligendi voluptates. Minus esse dolore perferendis. Quasi vero optio nisi eveniet, minus inventore voluptates neque eius laudantium porro?</div>
+            
+        </body>
+
+Adding animation require keyframes
+            <style>
+
+    .box {
+        width: 300px;
+        height: 300px;
+        border: 5px solid black;
+        background-color: black;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation-name: slideMe;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+
+    /* @keyframes slideMe {
+        from {
+            top: 0;
+            left: 0;
+        }
+        to {
+            left: 100%;
+        }
+    } */
+    @keyframes slideMe {
+        0% {
+            top: 0;
+            left: 0;
+
+        }
+        25% {
+            background-color: blue;
+            top: 0;
+            left: 90%;
+        }
+        50% {
+            background-color: yellow;
+            top: 90%;
+            left: 90%;
+        }
+        75% {
+            background-color: gray;
+            top: 90%;
+            left: 0
+        }
+        100% {
+            background-color: beige;
+            top: 0;
+            left: 0;
+        }
+    }
+        </style>
+        <body>
+        <div class="box"></div>
+            
+        </body>
+
+
+Flex allows customizable layout without having to use more static techniques
+    flex basis denots how much width taken
+    flex wrap allows wrapping of the cells
+    * denotes everything coded
+                * {
+                box-sizing: border-box;
+            }
+
+            #container {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            #container div {
+                border: 1px solid red;
+                flex-basis: 20%;
+                flex-shrink: 0;
+                flex-grow: 0;
+            }
+            #container div.right {
+                flex-basis: 95%;
+            }
+  
+        </style>
+        <body>
+        <div id="container">
+
+            <div class="navigation"> Navigation </div>
+            <div class=""Content"> Center </div>
+            <div class=""right"> Right </div>
+            <div class=""right"> Right </div>
+            <div class=""right"> Right </div>
+            <div class=""right"> Right </div>
+            <div class=""right"> Right </div>
+            <div class=""right"> Right </div>
+        </div>
+
+    display flex needed on tthe parent element
+        <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #container div {
+            border: 1px solid red;
+            
+        }
+        .navigation {
+            flex-basis: 20%;
+            flex-grow: 0;
+            flex-shrink: 1;
+        }
+        .content {
+            flex-basis: 80%;
+            flex-grow: 1;
+            flex-shrink: 0;
+        }
+    .header {
+        flex-basis: 100%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        background-color: #f5f5f5;
+        color: #000;
+        padding: 20px;
+        text-align: center;
+    }
+    
+  
+        </style>
+        <body>
+        <div id="container">
+            <div class="header">Header</div>
+            <div class="navigation"> Navigation </div>
+            <div class="content"> 
+                <h1 style="text-align: center;">Welcome to Flex</h1>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque unde rerum saepe dolorum quos laboriosam voluptate optio minima fugiat quod magni, ut vitae autem id error voluptatibus laborum! Vel, adipisci.</p>
+                <h3 style="text-align: center;">Hello amazing if it is</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, omnis quo modi perspiciatis sunt tempore ipsam magni pariatur porro sit aliquid consequuntur, fugiat dicta laboriosam ducimus reprehenderit. Eum, ducimus pariatur!</p>
+            </div>
+            
+        </div>
+            
+        </body>
+
+    The code above unable to make a layout not sure why
+
+Grid is strictly for template layout.
+
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            #grid {
+                display: grid;
+                grid-template-columns: auto auto auto;
+                grid-row-gap: 20px;
+                grid-column-gap: 20px;
+            }
+            .item, .item7 {
+                border: 1px solid red;
+            }
+            .item1 (
+                grid-column-start: 1;
+                grid-column-end: 4;
+            )
+            .item6 {
+                grid-row-start: 2;
+                grid-row-end: 4;
+            }
+            .item4, .item5 {
+                grid-column-start: 2;
+                grid-column-end: 4;
+            }
+        
+        </style>
+        <body>
+        <div id="grid">
+            <div class="item item 1">1</div>
+            
+            <div class="item item 4">4</div>
+            <div class="item item 5">5</div>
+            <div class="item item 6">6</div>
+            <div class="item item 7">7</div>
+            <div class="item item 8">8</div>
+        
+        </div>
+        </body>
+    
