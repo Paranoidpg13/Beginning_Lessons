@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+#layout .back_colors .back_color1, #layout .back_colors .content1, #layout .back_colors .content2{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.back_colors{
+    position: relative;
+
+}
+.back_color1 {
+    background-color: green;
+    flex-basis: 100%;
+
+}
+.back_color2 {
+    background-color: black;
+    height: 200px;
+}
+.back_color3 {
+    background-color: green;
+    height: 400px;
+}
+
+.rectangle {
+    color: rgb(241, 14, 14);
+    max-width: 250px;
+    font-size: 10px;
+    padding: 2%;
+    z-index: 40;
+    position: absolute;
+}
+
+.header_mid {
+    font-size: 30px;
+    color: white;
+    flex-basis: 40%;
+    padding: 10px;
+    position: relative;
+    left: 20px;
+}
+.header_s {
+    color: white;
+    flex-basis: 15%;
+    padding: 20px;
+
+}
+.find_more {
+    border-radius: 50%;
+    flex-basis: 10%;
+    padding: 20px;
+    background-color: rgb(212, 244, 149);
+    
+}
+button:hover { background-color: orange;}
+button:focus {background-color: red;}
+
+.fore_img {
+   /* height: 5px;
+   width: 5px; */
+    z-index: 20;
+    position: absolute;
+}
+img {
+    width: 400px;
+    height: 400px;
+    z-index: 10;
+    position: absolute;
+    top: 60px;
+    left: 150px;
+    z-index: 20;
+
+
+}
+.solid {
+    color: white;
+    font-size: 100px;
+    font-family:'Lucida Grande';
+    text-align: center;
+    position: relative;
+    z-index: 22;
+    top: 10px;
+    font-weight: 900;
+}
+
+.outline {
+    color: rgb(238, 100, 104);
+    font-size: 100px;
+    font-family: 'Lucida Grande';
+    text-align: center;
+    font-weight: 900;
+    padding-left: 100px;
+    
+}
+.outline2 {
+    color: rgb(238, 100, 104);
+    font-size: 100px;
+    font-family: 'Lucida Grande';
+    text-align: center;
+    font-weight: 900;
+}
+
+.outline3 {
+    color: rgb(238, 100, 104);
+    font-size: 100px;
+    font-family: 'Lucida Grande';
+    text-align: center;
+    font-weight: 900;
+    padding-left: 110px;}
+
+
+
+.content {
+    flex-basis: 100%;
+    color: white;
+    padding: 20px;
+    background-color: green;
+    text-align: left;
+    padding-left: 90px;
+
+}
+
+.content1 {
+    flex-basis: 100%;
+    color: white;
+    background-color: green;
+    /* text-align: center; */
+    /* padding-left: 20px; */
+
+}
+.sa {
+    flex-basis: 25%;
+    font-size: 25px;
+    text-align: center;
+}
+.sub_sa{
+    font-size: 15px;
+}
+
+.sm {
+    width: 280px;
+    height: 150px;
+    float: right;
+    background-color: beige;
+    position: relative;
+    z-index: 23;
+    right: 150px;
+    top: 150px;
+    z-index: 25;
+
+}
+.sm_data{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+    position: relative;
+    top: 20px;
+}
+
+
+
+.circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: yellow;
+    text-align: center;
+    padding: 10px;
+    margin-left: 50%;
+    margin-top: 10px;
+
+}
+
+.cc {
+    font-size: 10px;
+    color: black;
+}
+
+.content2 {
+    flex-basis: 100%;
+    color: black;
+    background-color: white;
+
+}
+.bio {
+    flex-basis: 40%;
+    padding-left: 20px;
+    font-size: 30px;
+    padding: 10px;
+
+}
+.bio2, .find_more2 {
+    flex-basis: 15%;
+    padding: 20px;
+
+}
+
+.find_more2 {
+    border-radius: 50%;
+    flex-basis: 10%;
+    padding: 20px;
+    background-color: rgb(212, 244, 149);
+    
+}
+
+
+
+
+
+
+
+</style>
+
+
+
+
+<body>
+    <div id="layout">
+        <!-- <div class="hero_page"> -->
+            <div class="back_colors">
+                <div class="back_color1">
+
+                        <div class="header_mid">
+                        Prajwal Giri
+
+                        </div>
+                        <div class="header_s">
+                            About Me
+                        </div>
+                        <div class="header_s">
+                            Resume
+                        </div>
+                        <div class="header_s">
+                            Work
+                        </div>
+                        <button class="find_more">Find More</button>
+
+                </div>
+                <div class="back_color3">
+                    <div class="fore_img">
+                        <img src="CSS_201_img.jpg" alt="Image not in file">
+                    </div>
+                    <div class="sm">
+                        <div class="sm_data">LI: /in/prajwal-giri</div>
+                        <div class="sm_data">IG: @paranoidpg13</div>
+                        <div class="sm_data">GH: @Paranoidpg13</div>
+
+                    </div>
+                    <div class="solid">Portfolio</div>
+                    <div class="outline">Portfolio</div>
+                    <div class="outline2">Portfolio</div>
+                    <div class="outline3">Portfolio</div>
+
+
+                </div>
+                <div class="back_color2">
+                    <div class="rectangle">
+                        Main fullfilment derives from expanding my applicable inspiration
+                        into well tested results in promoting growth for businesses regardless
+                        of the scale. 
+                    </div>
+
+                </div>
+
+                <div class="content"> 
+                    <h1>
+                        Contents
+                    </h1>
+                </div>
+
+                <div class="content1">
+
+                    <div class="sa">
+                        Social Awareness
+                        <div class="sub_sa">Cultivating the arts</div>
+                    </div>
+                    <div class="sa"> Social Outreach
+                        <div class="sub_sa">Finding more purpose</div>
+                    </div>
+                    <div class="sa"> 
+                        Indicative Measures
+                        <div class="sub_sa">
+                            Garner better faith
+                        </div>
+                    </div>
+                    <div class="sa"> Presentation
+                        <div class="sub_sa">
+                            Solid foothold in concepts
+                        </div>
+                    </div>
+                <
+                    <div class="circle">
+                    <div class="cc">Scroll Down</div>
+                    </div>
+                   
+
+                </div>
+
+                <div class="content2">
+                    <div class="bio">
+                        Prajwal Giri
+                    </div>
+                    <div class="bio2">
+                        <b>About me</b>
+                    </div>
+                    <div class="bio2">
+                        Resume
+                    </div>
+                    <div class="bio2">
+                        Work
+                    </div>
+                    <button class="find_more2"> Find More </button>
+
+                </div>
+
+
+
+            </div>
+
+
+<!-- 
+        </div> -->
+
+
+
+    </div>
+
+
+
+    
+</body>
+</html>
