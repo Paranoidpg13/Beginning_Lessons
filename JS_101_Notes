@@ -1,0 +1,302 @@
+Javascript can be written in codepen
+    console is where the debugging occurs (does not affect the viewport)
+    console.log("Hello from Prajwal Giri); is an example of logging into console
+
+javascript is the frontend programming language
+    creates interactivity for the webpage
+
+<script></script> can be placed in head or body elements
+    src needs to be included if writing external javascript
+    if doing internal script then no html nor css can be placed only javascript
+    <script>
+        var name = "Praj";
+        if(name == Praj) {
+            alert("Hello Student!");
+            alert("Hello, follow me on Insta @paranoidpg13");
+        }
+        function greeting(name) {
+            return Hello $(name), welcome to JavaScript ;
+
+        }
+        const greet = greeting("Praj");
+    </script>
+
+        = denotes assigned
+        == denotes equal to 
+        The code above was not executed only written
+        
+           <script>
+            console.log("Write anything in here");
+            console.warn("This is a warning");
+            console.error("This is an error");
+            </script>
+        </body>
+
+        Code above shows warning and error statements
+
+            <script src="script.js">
+      
+    
+             </script>
+
+             code above could show pathing issue if external file not written correctly
+             shows how to debug external javascript files
+
+storing data with variables
+    variables allows ease modification ability
+    var denotes variables
+    string is type of variable that only includes alphabets
+
+let and const allow assignment (const means constant and cannot be overwritten)
+    let apples = 1; let allow reassignment within console (apples = 4)
+    const height = "6'0\""; the slash is necessary to relay the quotations are not waiting for another string
+    var height = "6'0\""; allows the var to be retrieved outside of the functional brackets
+        var website = "https://codingforeverybody.com";
+        var teacherName = "Kalob Taulien";
+
+        console.log(website);
+
+        if(teacherName == "Kalob Taulien") {
+        let apples = 1;
+        const height = "6'0\"";
+
+        console.log("I have", apples, "apple");
+        console.log("I am", height);
+        }
+
+
+
+Code comments through cmd / or through 2// before the code
+    also you can use /* and stop the commenting through */
+
+javascript operators allow computing if numbers
+ (ex... / division * multiplication + addition - subtraction
+        ** exponent % modulos giving remainder
+        ++ increment the syntax matter if ++ added before or after variable
+        -- decrement)
+
+
+//Javascript Data Types
+strings have quotation marks
+    const str = "A string";
+num without quotation marks
+    const num = 3;
+float has decimal points
+    const flt = 3.14;
+bool true or false
+    const bool = true; // or false
+arrays use list
+    const list = ["item 1", 2, "three", 3.14, []];
+thing is null (has nothing in it)
+    thing = null;
+notDefined is undefined
+    const notDefined = undefined; // Currently holds not value
+const getAge = function() { return 31;} // This is a function 
+const obj = {
+    'name': 'Prajwal'
+    'profession' : 'Coding teacher'
+} // Object; can be accessed with obj['name']
+
+const insta = "@paranoidpg13";
+    const insta = "@paranoidpgpg13";
+    if(insta == "@paranoidpg13") {
+        //Execute this code in here
+        console.log("Instagram handle is @paranoidpg13")
+    } else {
+        //Execute this code of it's not @paranoidpg13
+        console.log(insta, "is the instagram handle")
+    }
+
+Conditional statements work in sequential
+    const age = 18;
+    if(age>= 18) {
+        console.log("I'M ALLOWED TO VOTE");
+    }
+
+    if(age>=21) {
+        console.log("I can drink alcohol");
+    }
+    else {
+        console.log("Not old enough to drink alchol");
+    }
+    //if the else statment above alcohol age and below voting age then the else statement won't be used
+
+
+        const name = "Praj";
+        if(name == "Pratik") {
+            console.log("Welcome, Pratik!");
+        }
+        else if(name == "Prajwal") {
+            // Do something here
+            console.log("Hello Prajwal");
+        }
+        else {
+            console.log("Hello, Guest");
+        }
+        // else is useful to debug code
+
+Document Object Model (DOM) show the hierarchy of the elements used (tree linkage)
+    on console you can use:
+            const box = document.getElementById("box");
+            the reply will be the div statment
+            can change the statement through innerText
+                box.innerText = "Something new";
+                            or
+                box.inner HTML = "Something <strong>new is bolded</strong>?";
+
+
+
+java script objects can be defined with key values
+    these are written in the console not text editor
+    // let person = {};
+    // typeof(person);
+    // let person = {
+    //     'name': 'Praj',
+    //     'job' : 'Teaching you Javascript',
+    //     'age' : 28,
+    //     'favFoods' : ['pizza', 'tacos', 'subs'],
+    // }
+    person['age'] with a return of 28
+
+
+String methods are listed below (might need clarification on course length)
+                const course = "Javascript 101: coding for beginners";
+                course.length (finds length of string)
+                course.slice(finds the str characters between a range)
+                course.substr(finds the str characters after a certain amount of length)
+                course.replace(str value to replace, replaces the value)
+                cannot reassign a constant; however, a let allows you to replace 
+                course.toUpperCase()
+                course.toLowerCase()
+                    const spacy = "    lots of spaces   "
+                    spacy.trim() no input needed to trim the unnecessary spaces
+                words = course.split(" ") splits by spaces
+                typeof(words) will return an object but technically it is an array
+                course[num] will return the str at the numeric order
+
+Demystifying data types pertains to arrays that sometimes get classified as obj but are actually arr[]
+
+
+cast data types: str and num but not for obj and arr
+javascript allows isolated num when written as a str (quotation marks) to be treated as a number 
+    Nan not a number will pop up if it is not isolated (ie 'my age is 28')
+boolean is true (1) and false (0)
+    don't check for boolean if a num is 0 because the boolean will output as false
+can transform age into str to replace a number
+    age = 31
+    age = String(age)
+    age.replace('1','3')
+    the drawback to this is that the numbers can be concatenated instead of going through mathematical operation
+    use age = Number(age)
+
+Template literal allows concatentation of line using backtick ` and at the end of line another `
+    ex) "My name is ${name}. And my age is ${age}`
+
+javascript arrays
+    lst.push("new item here")
+    const newItem = lst.pop() pop the last item
+javascript array iteration
+    for(something; as long as something else; after each iteration) {code here }
+    const arr = ["Zero", "One", "Two", "Three"]
+    for(let i = 0; i < arr.length; i++) {
+        console.log(i,arr[i])
+    }
+    arr.forEach(num => {
+        console.log(num);
+    });
+    be wary using for loop with just arr.length could crash browser as it just monitors boolean true
+
+Selecting multiple DOM nodes
+
+    const elems = document.querySelector(".this-class").innerText;
+    console.log(elems) for one class
+    const elems = document.querySelectorAll(".this-class");
+    console.log(elems) for all classes 
+    returns node list and can loop through the node list different than object and array
+
+after creating nodelist (recheck nodelist - single list of elements)
+elements.forEach(node => {
+    node.innerText = "This is changed!";
+
+});
+
+elements.forEach((node, index) => {
+    node.innerText = `Hello this is item ${index + 1}`
+});
+
+elements.forEach(node => {
+    node.classList.add("custom-class", "second-class")
+});
+
+function addNumber(param1, param2) {
+    //Logic
+    return "an answer";
+}
+const total = addNumber() //returns an answer
+
+DRY - Don't Repeat Yourself
+
+have to declare function with function
+instead of console.log you can use return to turn it into a usable situation with a variable
+        function addNumber(num1, num2) {
+    const total = num1 + num2;
+    return total
+        }
+
+        const addedTotal = addNumber(1,9)
+
+        function greeting(name) {
+            console.log(`Hello ${name}`);
+        }
+
+        greeting("Praj")
+
+        function greeting(name) {
+            return `Hello ${name}`;
+        }
+
+        const cat = greeting("Zephyr");
+        cat 
+
+    num + num2 will add if number or concatenate with function is called with string
+
+
+...number is the rest operator that will allow list to be formed
+    function addNumbers(greetingName, ...numbers) {
+    let total = 0;
+    for(index in numbers) {
+        total = total + numbers[index];
+
+    }
+        return `${greetingName}: the total is ${total}`;
+    }
+
+    const newTotal = addNumbers("Prajwal", 3,5,7,9);
+    console.log(newTotal);
+
+Can write function within object
+    const person = {
+        'name' : 'Prajwal',
+        'age' : 28,
+        'height' : "6'0\"",
+        'speak' : function(want="cookies") {
+            console.log(`Hi, I want ${want}`);
+        }
+    }
+    person.speak()
+    person.speak("Pizza")
+
+
+This code below has object literal
+    const person = {
+    'name' : 'Prajwal',
+    'age' : 28,
+    'height' : "6'0\"",
+    'speak' : function(want="cookies") {
+        console.log(`Hi, I want ${want}`);
+    },
+    talk(to = "Pratik") { //object literal
+        console.log(`I am talking to ${to}`)
+    }
+    }
+    person.talk("Mommy");
