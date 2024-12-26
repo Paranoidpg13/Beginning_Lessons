@@ -1,0 +1,935 @@
+jquery allows writing javascript for all browsers
+    no strict ways to write jquery
+    react.js and vue.js have strict methods (good for complex and large)
+
+the cdn used:
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+
+jQuery syntax:
+    document.querySelector()
+    $(selector).event(function() {
+
+
+    })
+
+    <h1 class="customClassName" id="customId">
+        Hello World
+    </h1>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+            $("h1.customClassName").text("This was changed via jQuery");
+            });
+        </script>
+
+jQuery selectors (selectors are more css than jquery)
+jQuery allows changing of html without touching the html:
+            <h1>Our Custom Title 1</h1>
+            <h1>Our Custom Title 2</h1>
+            <button class="custom-class">This a custom button</button>
+            <p class="custom-class">
+                Lorem ipsum dolor sit amet consectetur 
+                adipisicing elit. Et velit esse delectus 
+                perferendis, veritatis ut? Suscipit fuga 
+                veritatis assumenda, quisquam a consectetur 
+                corporis nobis nemo, pariatur neque sapiente 
+                quidem temporibus!
+            </p>
+            <p id="customId">
+                Lorem ipsum dolor sit amet consectetur 
+                adipisicing elit. Dolores aliquid nesciunt 
+                placeat inventore, eaque architecto ratione.
+                Explicabo, vel at. Est expedita quibusdam 
+                aspernatur voluptatem, optio cupiditate 
+                maxime alias non nulla.
+            </p>
+
+
+                <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+                <script>
+                    $(document).ready(function() {
+                    $("h1, p").text("This was changed via jQuery #2");
+                    $("p.custom-class").text("Changed again #3");
+                    $("#customId").text("Changed AGAIN #4");
+                    });
+                </script>
+
+changing html with jquery (use .html instead of .text)
+        <div id="customId"></div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#customId").html("<h1>Hello World<span class='custom class'>Span text <span><h1>");
+            $("span").text("Changed");
+
+        });
+    </script>
+
+Difference between html and text
+    <section>
+        Put some HTML code in here
+
+    </section>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+            $("section").text("<b> vs <strong>");
+
+            });
+
+How to get form values 
+    <input type="text" value="Hello world">
+
+    <section>
+        Lorem ipsum dolor sit amet consectetur 
+        adipisicing elit. Amet modi quos earum, 
+        quibusdam quo assumenda ipsa fugit ducimus 
+        inventore repudiandae nesciunt deleniti 
+        eligendi vero libero unde, mollitia vel 
+        incidunt illo?
+    </section>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                const value = $("input").val("This is changed")
+                console.log(value)
+
+            });
+    finding more functional qualities to jQuery
+    <input type="text" value="Hello world">
+
+    <section>
+        Lorem ipsum dolor sit amet consectetur 
+        adipisicing elit. Amet <strong>modi</strong> quos earum, 
+        quibusdam quo assumenda ipsa fugit ducimus 
+        inventore repudiandae nesciunt deleniti 
+        eligendi vero libero unde, mollitia vel 
+        incidunt illo?
+    </section>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                const text = $("section").html()
+                console.log(text)
+            });
+
+Appending and prepending html elements
+    <h1>
+        Some text in here
+    </h1>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script>
+        $(document).ready(function() {
+            $("h1")
+            .text("This is changed text")
+            .append("<u>This is underline #2</u>")
+            .prepend("<i>This is italics #2</i>")
+        })
+        </script>
+    above is called chaining
+
+How to add html before or after an element:
+
+    <div id="target">
+        Add HTML before and after this
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+       $("div#target").before("<h3> Hello World this is a title </h3>")
+       $("div#target").after("<p>This is a paragraph</p>")
+      })
+                OR (Chaining)
+       $(document).ready(function() {
+       $("div#target")
+            .before("<h3> Hello World this is a title </h3>")
+            .after("<p>This is a paragraph</p>")
+      })
+
+Deleting elements from DOM:
+    
+    <div>
+        
+        
+        <p>Lorem ipsum dolor sit amet consectetur 
+            adipisicing elit. Cupiditate mollitia 
+            fugit nobis reprehenderit! Dignissimos 
+            ut assumenda provident ipsum earum eum 
+            consectetur culpa, quibusdam, est repellat 
+            incidunt sed alias nobis tempora.</p>
+        <p class="middle-paragraph">Lorem ipsum dolor sit amet consectetur 
+            adipisicing elit. Cupiditate mollitia 
+            fugit nobis reprehenderit! Dignissimos 
+            ut assumenda provident ipsum earum eum 
+            consectetur culpa, quibusdam, est repellat 
+            incidunt sed alias nobis tempora.</p>
+        <p>Lorem ipsum dolor sit amet consectetur 
+            adipisicing elit. Cupiditate mollitia 
+            fugit nobis reprehenderit! Dignissimos 
+            ut assumenda provident ipsum earum eum 
+            consectetur culpa, quibusdam, est repellat 
+            incidunt sed alias nobis tempora.</p>
+
+
+
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("div p.middle-paragraph").remove()
+        
+      })
+
+Deleting Child Elements:
+
+    <div id="parent"> <!--Parent Element-->
+        <strong>Bolded word here</strong>
+        <em>Italicized word here</em>
+        <p>Lorem ipsum dolor sit amet, 
+            consectetur adipisicing elit. 
+            Deserunt officiis, suscipit 
+            veniam perferendis nisi 
+            reprehenderit aperiam sit ipsum 
+            pariatur numquam vitae illo a totam 
+            vel corporis architecto cupiditate 
+            delectus consequatur!</p>
+
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("div#parent").empty().html("<h1> Hello World </h1>")
+        
+      })
+    </script>
+
+    parent.empty not needed until fetching from an api:
+
+    <div id="parent"> <!--Parent Element-->
+        <strong>Bolded word here</strong>
+        <em>Italicized word here</em>
+        <p>Lorem ipsum dolor sit amet, 
+            consectetur adipisicing elit. 
+            Deserunt officiis, suscipit 
+            veniam perferendis nisi 
+            reprehenderit aperiam sit ipsum 
+            pariatur numquam vitae illo a totam 
+            vel corporis architecto cupiditate 
+            delectus consequatur!</p>
+
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        const $parent = $("div#parent")
+            $parent.empty()
+            $parent.html("Stuff in here and there are no child elements")
+        
+      })
+
+event listener includes typing in an input element, moving mouse, resizing screen, blur or leave out input element
+    in addition to clicking a button
+
+
+    <div id="putAButtonHere"></div>
+    
+    
+    <!-- <button>Click me</button>
+    <input type="text"> -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        //     $("button").click( function() {
+        //     console.log("I am clicked")
+
+        //    })
+           
+        // $("button").on("click", function() {
+        //     console.log("This is clickable too")
+        // })
+            $(document).on("click", "button", function() {
+            console.log("33333")
+        })
+           const $parent = $("#putAButtonHere");
+        $parent.html("<button>Click me Dyanmic Button</button>")
+       
+        // above dynamic works but those commented do not
+
+        
+      })
+
+Hover Event Listeners:
+   
+   #box {
+        width: 200px;
+        height: 200px;
+        background-color: black;
+        margin: 50px auto;
+    }
+    /* #box:hover { another and more popular method to console log mouseenter and mouseleave
+        don't know how in CSS - only the preliminary steps
+    } */
+    </style>
+    <body>
+
+    <div id="box"></div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script>
+            // $(selector).on(eventName, function() {
+            //      ....
+            //}
+        $(document).ready(function() {
+            $("#box")
+            .on("mouseenter", function() {
+                console.log("Your mouse is hovering over this box")
+            })
+            .on("mouseleave", function() {
+                console.warn("You left the box area")
+            })
+        })
+    
+        </script>
+
+Keyup event listeners:
+            
+    <input type="text" class="select-me" value="Hello world">
+    <input type="text" class="select-me" value="Type in here">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+        // $(selector).on(eventName, function() {
+        //      ....
+        //}
+      $(document).ready(function() {
+        $(".select-me").on("keyup", function() {
+            // const $input = $(".select-me")
+            // console.log($input.val())
+            //function allow to use this 
+            //a jQuery thing not vanilla javascript
+            console.log($(this).val())
+        })
+      
+      })
+  
+    </script>
+
+Focus Event Listeners:
+    
+    <input name="myinput">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+        
+      $(document).ready(function() {
+        
+            $("[name='myinput']").on("focus", function() {
+                console.log("You focused into this input")
+            })
+            
+        
+      
+      })
+
+        --- input above --- textarea below ---
+
+    <textarea name="mytextarea" id="" cols="30" rows="10"></textarea>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+        // $(selector).on(eventName, function() {
+        //      ....
+        //}
+      $(document).ready(function() {
+        
+            $("[name='mytextarea']").on("focus", function() {
+                console.log("You focused into this textarea")
+            })
+            
+        
+      
+      })
+
+Blur Event Listeners:
+        
+    <input type="text" value="">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+      
+      $(document).ready(function() {
+       
+        $("input").on("blur", function() {
+            let websiteUrl = $(this).val()
+            if(websiteUrl.substr(0,4) !== "http") {
+                websiteUrl = `http://${websiteUrl}`
+            }
+            $(this).val(websiteUrl)
+        })
+       
+            
+        
+      
+      })
+
+Form Submission Event Listeners:
+    to not submit form can create event.preventDefault which prevents the default action
+        
+    <form>
+        <input type="text" name="name" placeholder="Your name">
+        <button type="submit">Submit this form</button>
+    </form>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+      
+      $(document).ready(function() {
+       
+        // $("form").on("submit", function(event) {
+        //     event.preventDefault()
+        //     console.log("Form was not submitted")
+        // })
+       
+            $("button").on("click", function(event) {
+                event.preventDefault()
+                console.log("Button is rendered useless")
+            })
+        
+      
+      })
+  
+How to hide elements:
+        
+    #box {
+        width: 100px;
+        height: 100px;
+        background-color: black;
+
+    }
+  
+
+    </style>
+    <body>
+        
+        <button id="clickme"> Hide Element</button>
+        <div id="box"></div>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script>
+        
+        $(document).ready(function() {
+        
+            $("#clickme").on("click", function(e) {
+                e.preventDefault()
+                $("#box").hide();
+            })
+        
+        })
+    the style= display:none is used to hide
+
+How to show element:
+        
+    #box {
+        width: 100px;
+        height: 100px;
+        background-color: black;
+        display: none;
+
+    }
+  
+
+</style>
+<body>
+    
+    <button id="clickme"> Show Element</button>
+    <div id="box"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+      
+      $(document).ready(function() {
+       
+        // $("#clickme").on("click", function(e) {
+        //     e.preventDefault()
+        //     $("#box").show();
+        // })
+
+        $("#clickme").click(function() {
+            $("#box").show()
+        })
+    
+      })
+   
+  
+    </script>
+
+How to add CSS classes:
+        
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: black;
+        
+
+    }
+    .blue {
+        background-color: blue;
+    }
+    .width-100 {
+        width: 100%;
+    }
+  
+
+    </style>
+    <body>
+        
+        <button> Click Me </button>
+        <div class="box"></div>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script>
+        
+        $(document).ready(function() {
+        //    setTimeout(() => {
+        //     $(".box").addClass("blue")
+        //    }, 2000)
+
+            $("button").on("click", () => {
+            $(".box").addClass("blue width-100")
+        })
+        
+        
+        })
+   
+How to remove CSS classes
+        
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            
+
+        }
+        .blue {
+            background-color: blue;
+        }
+        .width-100 {
+            width: 100%;
+        }
+    
+
+    </style>
+    <body>
+        
+        <button class="remove-blue"> Remove Blue </button>
+        <button class="remove-width"> Remove Width </button>
+        <div class="box blue width-100"></div>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script>
+        
+        $(document).ready(function() {
+            const $box = $(".box");
+            const $removeBlue = $(".remove-blue")
+            const $removeWidth = $(".remove-width")
+
+            $removeBlue.on("click", function() {
+                $box.removeClass("blue")
+            })
+            $removeWidth.on("click", () => {
+                $box.removeClass("width-100")
+            })
+        
+        
+        })
+    
+How to toggle CSS classes
+        
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            
+
+        }
+        .blue {
+            background-color: blue;
+        }
+        .width-100 {
+            width: 100%;
+            display: none;
+        }
+    
+
+    </style>
+    <body>
+        
+        <button class="toggle-blue-class"> Toggle Blue </button>
+        
+        <div class="box blue"></div>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script>
+        
+        $(document).ready(function() {
+        const $box = $(".box");
+
+        $(".toggle-blue-class").on("click", () => {
+            $box.toggleClass("blue")
+        })
+        
+        
+        })
+   
+   ---  With input below ---
+       
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            
+
+        }
+        .blue {
+            background-color: blue;
+        }
+        .width-100 {
+            width: 100%;
+            display: none;
+        }
+    
+
+    </style>
+    <body>
+        <input type="text">
+
+        
+        <div class="box blue"></div>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script>
+        
+        $(document).ready(function() {
+        const $box = $(".box");
+
+        $("input").on("keyup", function() {
+            const value = $(this).val();
+            if(value === "Praj") {
+                $box.addClass("blue")
+            }
+            else {
+                $box.removeClass("blue")
+            }
+            
+        })
+        
+        
+        })
+
+Adding custom CSS to elements
+            
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            
+
+        }
+    
+    
+
+    </style>
+    <body>
+    
+
+        
+        <div class="box"></div>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script>
+        
+        $(document).ready(function() {
+        
+            $(".box")
+                // .css("border", "10px solid black")
+                // .css("background-color", "orange")
+                // .css("border-radius", "50%")
+
+                .css({
+                    backgroundColor: "yellow",
+                    border: "10px solid blue",
+                    borderRadius: "10px"
+                })
+        
+        
+        
+        })
+    
+    
+Fading In and Fading Out:
+    $box = $(".box")
+    $box.fadeOut(4500) // num is timer
+    $box.fadeIn()
+
+Toggle fade and displays:
+                
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            
+
+        }
+    
+    
+
+    </style>
+    <body>
+    
+
+        <button>Click Me</button>
+        <div class="box"></div>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script>
+        
+        $(document).ready(function() {
+        
+            $("button").on("click", function() {
+                $(".box").fadeToggle()
+            })
+        
+        
+        })
+        
+        --- toggle uses show and hide ---
+        --- fadetoggle uses fadeIn and fadeOut ---
+
+Slide Up and Slide Down or use slideToggle
+
+            
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            
+
+        }
+    
+    
+
+    </style>
+    <body>
+    
+
+        <button>Click Me</button>
+        <div class="box"></div>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script>
+        
+        $(document).ready(function() {
+        
+            $("button").on("click", function() {
+                $(".box").slideToggle()
+            })
+        
+        
+        })
+    
+Callback Functions
+ once a click occurs conduct an action
+ once fadeOut console.log("Fadeout is complete")
+            
+            .box {
+                width: 100px;
+                height: 100px;
+                background-color: black;
+                
+
+            }
+        
+        
+
+        </style>
+        <body>
+        
+
+            <button>Click Me</button>
+            <div class="box"></div>
+
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+            <script>
+            
+            $(document).ready(function() {
+            
+                $("button").on("click", function() {
+                    $(".box").slideToggle(4500, function() {
+                        console.log("Sliding is complete")
+                    })
+                })
+                --or--for the one time--
+                   $("button").on("click", function() {
+            $(".box").slideToggle(4500, function() {
+                $(this).remove();
+            })
+            
+            
+            })
+        
+Making Animations with jQuery
+anything with anumber value besides color can be animated
+                
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            
+
+        }
+    
+    
+
+    </style>
+    <body>
+    
+
+        <button>Click Me</button>
+        <div class="box"></div>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script>
+        
+        $(document).ready(function() {
+
+            $("button").on("click", function() {
+                $(".box").animate({
+                    opacity: 0.5,
+                    width: "500px",
+                }, 4000)
+            })
+        
+            
+        
+        
+        })
+   
+Width dimensions:
+    $box.width()
+    $box.height()
+    $box.outerWidth() or $box.outerWidth(true)
+    $box.innerWidth()
+    $(window).height
+
+Resizing the window:
+              $(document).ready(function() {
+
+        $(window).on("resize", function() {
+            // console.log( $(window).width(), 'x', $(window).height() )
+            if($(window).width() <= 230) {
+                $("body").css("background-color", "black")
+            }
+            else {
+                $("body").css("background-color", "white")
+            }
+
+Looping elements through jQuery:
+          
+    <div>First item</div>
+    <div>Second item</div>
+    <div>Third item</div>
+
+  
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+      
+      $(document).ready(function() {
+        $("div").each(function(index, element) {
+            const originalText = $(element).text()
+            $(element).text(`${index + 1}. ${originalText}`)
+
+            if(index === 2) {
+                $(element)
+                .css("background-color", "black")
+                .css("color", "white")
+            }
+        })
+
+How to change element attributes:
+           <input type="text">
+   
+  
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+      
+      $(document).ready(function() {
+        const $input = $("input");
+        console.log( $input.attr("type", "password") )
+
+       //$("input").attr("type", "text") in console to reveal the password.
+      
+AJAX Get Requests:
+
+           
+  
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+      
+      $(document).ready(function() {
+        $.get('https://akabab.github.io/starwars-api/api/all.json', function(data) {
+            const randNum = Math.ceil(Math.random()*88)
+            console.log(data[randNum]['name'])
+            console.log(data[randNum]['height'])
+            console.log(data[randNum]['mass'])
+            // The above works ;-)
+
+            // console.log(data['name'])
+            // console.log(data['height']) the three show undefined
+            // console.log(data['mass'])
+        })
+      
+         
+    
+    
+      })
+   
+  
+
+Ajax Post Requests:
