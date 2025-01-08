@@ -1,0 +1,247 @@
+React JS is JS library for building user interfaces
+
+allows dynamic pages
+uses jsx -> similar to JS
+
+need to download node js
+nvm - node version manager
+npm - node program manager
+download LTS of node JS
+
+sudo npm config set legacy-peer-deps true to absolve the dependencies
+ensure to use chatGPT when arriving at errors
+
+jsx is html written inside javascript
+changes are live
+file name is in string
+
+jsx syntax
+index.js contains node modules files
+can include variables to index.js as written as html
+the frontend is index.html
+
+Item component can simplify the code
+classes have curly braces yet return have parentheses
+
+Item can be reusable {this.props.name} props mean property
+
+React leverages old school javascript as reactJS
+        class Item extends React.Component {
+
+        clickMe() {
+            console.log("I was clicked")
+        }
+
+
+        render() {
+        return (
+            <h1 onClick={ () => this.clickMe()}> Hello from {this.props.name}</h1>
+        )
+        }
+    }
+        ---- Furthermore ----
+        
+        import React from 'react';
+
+        class Item extends React.Component {
+
+            clickMe() {
+                console.log("I clicked", this.props.name)
+            }
+
+
+            render() {
+            return (
+                <h1 onClick={ () => this.clickMe()}> Hello from {this.props.name}</h1>
+            )
+            }
+        }
+
+        export default Item;
+
+        --- From ---
+            import logo from './logo.svg';
+            import './App.css';
+            import Item from './MyItem';
+
+
+
+
+            function App() {
+            return (
+                <div className="App">
+                <header className="App-header">
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <Item name="Pratik" />
+                    <Item name="Mota" />
+                    <p>
+                    Edit <code>src/App.js</code> and save to reload or enjoy.
+                    </p>
+                    <a
+                    className="App-link"
+                    href="https://reactjs.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >
+                    Learn React
+                    </a>
+                </header>
+                </div>
+            );
+            }
+
+            export default App;
+
+States are internal - can be made public like props through 
+state is fixated to specific component 
+
+        import React from 'react';
+
+        class Item extends React.Component {
+
+            constructor(props) {
+                super(props)
+
+                this.state = {
+                    clicks: 0,
+                    totalRemaining: 100,
+                }
+            }
+            
+            
+            clickMe() {
+                this.setState({
+                    clicks: this.state.clicks + 1,
+                    totalRemaining: this.state.totalRemaining - 1
+                })
+            }
+
+
+            render() {
+            return (
+                <div>
+                <h1 onClick={ () => this.clickMe()}> Hello from {this.props.name}</h1>
+                <span> {this.state.clicks} is the number of clicks. {this.state.totalRemaining}</span>
+                </div>
+            )
+            }
+        }
+
+        export default Item;
+
+        --- Pokemon API ----
+        import logo from './logo.svg';
+        import './App.css';
+        import React from 'react';
+        // import Item from './MyItem';
+
+
+        class CatchPokemon extends React.Component {
+        constructor() {
+            super()
+            this.state = {
+            name: null,
+            height: null,
+            type: [],
+            weight: null,
+            }
+        }
+        getNewCharacter() {
+            const randNum = Math.ceil(Math.random()*1025)
+            const url = `https://pokeapi.co/api/v2/pokemon/${randNum}`
+            fetch(url)
+            .then(response => response.json())
+            .then(data => { console.log(data)   
+                this.setState({
+            name: data.name,
+            height: data.height/10,
+            type: data.types[0].type.name,
+            type2: data.types[1].type.name,
+            weight: data.weight/10,
+            loadedCharacter: true,
+            })
+
+
+            })
+        }
+        render() {
+            return (
+            <div>
+            {
+                this.state.loadedCharacter &&
+                <div> 
+                <h1>{this.state.name}</h1>
+            <p>{this.state.height} m</p>
+            <p>weight: {this.state.weight} kg</p>
+            <ul>
+                <li>{this.state.type} </li>
+                <li>{this.state.type2} </li>
+
+            </ul>
+            
+                </div>
+            }
+            <button 
+            type="button" 
+            onClick={() => this.getNewCharacter()}
+            className="bn" 
+            >
+                Randomize Pokemon
+            </button>
+            </div>
+            )
+        }
+
+        }
+
+
+        function App() {
+        return (
+            <div className="App">
+            <header className="App-header">
+
+                <CatchPokemon />
+
+            </header>
+            </div>
+        );
+        }
+
+        export default App;
+
+to add links use href={this.state.homeworld}
+
+can loop through using .map
+   <ul> 
+    
+    this.state.film.map(film => {
+        return <li>{film}<li>
+    })
+    </ul>
+
+    --or--
+   
+   class FilmItermRow extends React.Component {
+    render() {
+        return (
+            <li>
+            <a href={this.props.url}>{this.props.url} </a>
+            </li>
+        )
+    }
+   }
+   
+   -under StarWars-
+   
+    const movies = this.state.films.map((url,i) => {
+        return <FilmItemRow key={i} url={url} />
+    })
+
+
+    <div>
+        <ul>
+        {movies}
+        </ul>
+
+
+    </div>
