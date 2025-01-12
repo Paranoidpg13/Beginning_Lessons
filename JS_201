@@ -1,0 +1,391 @@
+Writing clean code requires fundamental use of syntax
+    once code is nice and readable it is maintainable
+
+    var varName = "thing";
+    let myNameIsPrajwal = "thing";
+    const NAME = "Prajwal";
+
+    console.log(NAME) // const
+    console.log(myNameIsPrajwal) // variable
+
+    if(something == "something") {
+        //code in here
+    }
+
+    function theName(param1, param2) {
+        // code in here
+    }
+
+
+Window onload:
+        window.onload = function() {
+            alert("page is loaded")
+        }
+
+Window offload:
+   window.onbeforeunload = function() {
+            console.log("Before unload");
+            return "Are you sure you want to leave?";
+            alert("You are leaving the page")
+        }
+
+== brings a boolean response
+        let num = "0";
+        typeof(num);
+        console.log(num == "0");
+        as opposed to:
+            console.log(num === 0);
+
+var is allowed to bo beyond the curly braces while let and const don't
+           function() {
+            let varName = "Thing";
+            }
+
+            const num = 1234
+            if(num === 1234) {
+                const greeting = "Hello 1234";
+            }
+            console.log(greeting);
+
+
+              if(num === 1234) {
+            var greeting = "Hello 1234"
+                    
+                }
+                console.log(greeting);
+
+variable hoisting
+
+        console.log("First", name);
+        var name = "Praj";
+        console.log("Second", name)
+    what's implied here is that var name; is hoisted to the top
+     that's why there is not an error
+
+javascript closures gives access to function out of its scope
+                  let person1 = "Prajwal Giri";
+                function greeting() {
+                    console.log(`Hello ${person1}`)
+                    var person2 = "Jon"
+                }
+                greeting();
+                console.log(person2, "is the second the person")
+
+in javascript can order functions to run after other functions are run
+         console.log("Waiting 2.5 seconds");
+        setTimeout(function() {
+            console.log("Do this thing in here")
+        }, 2500)
+        console.log("The last line")
+
+Strict mode :
+              "use strict";
+
+                let x = "thing";
+
+                x = "something else";
+
+                console.log(x)
+
+Timed events with timeout and intervals
+         
+     console.log("Starting script...");
+     setTimeout(function(){
+        console.log("Waited 3 seconds")
+
+     }, 3000)
+
+      let count = 0  
+    const myInterval = setInterval(function() {
+        console.log("Checking something...")
+        count++;
+
+        if(count === 3) {
+            clearInterval(myInterval)
+            console.log("That was the last one");
+        }
+    }, 2000)
+
+make sure while statements has a false to stop the while statement
+  let num = 0
+   while(num<100) {
+    console.log(num);
+    num++;
+   }
+
+   while(true) {
+        let name = prompt("What is your name?")
+        if(name === "Praj") {
+            break;
+        }
+        console.log("Wrong name. Try Again")
+   }
+
+Destructuring arrays and objects
+         const months = ['January', 'February', 'December'];
+        const [jan, feb] = months;
+        console.log(jan, feb)
+        console.log(months)
+
+          const person3 = {
+        'name' : 'Prajwal',
+        'instagram' : '@paranoidpg13',
+        'somethingelse' : 'somethingelse'
+
+       }
+
+       const{name} = person3
+       
+Deleting object properties
+         "use strict";
+     const person4 = {
+        'name' : 'Praj',
+        'age' : 28
+     }
+     delete person4['age'];
+      console.log(person4['age'])
+   
+Proper javascript math
+    Math.round()
+    Math.pow() // exponent Math.pow(8,2) => 64
+    Math.sqrt(9) // square root of number
+    Math.max(1,4,43,10) // finds highest number
+    Math.min() // finds lowest number
+    Math.floor() // rounds down to whole number
+    Math.ceil() // rounds up to whole number
+
+Math.random() // will give a number between 0 and 1
+to get between 0 and 100 multiple by 100
+Math.floor(Math.random()*100) gives rounded down number
+
+Math.random() * 83 will give number between 0 and 83
+
+
+Random number guessing game:
+    My attempt -  - 
+        let randomNumber = 5
+       while(true) {
+        numGuess = prompt("Guess a number between 0 and 10")
+        if(numGuess == randomNumber) {
+            console.log("That is correct");
+            break;
+        }
+       } 
+       console.log("Try again")
+
+    Answer:
+
+      while(true) {
+            let number = prompt("Guess the number:")
+                number = Number(number);
+            const randomNumber = Math.ceil(Math.random()*10);
+
+            if(number == randomNumber) {
+                alert("YOU WIN");
+                break;
+            }
+            else {
+            console.log("You guessed ", number, " But the right number was ", randomNumber);
+        }
+        } 
+
+Gracefully handling errors with try/catch/finally
+    try{
+        functionThatDoesntExist()
+      } catch(error) {
+        console.warn(error)
+      }
+
+      console.log("Show me!!")
+
+        try{
+        throw "Praj's custom error";
+      } catch(error) {
+        console.warn("Error Logging: ", error)
+      }
+
+      console.log("Show me!!")
+
+
+          const num = 10
+      try {
+        num = num + 20
+      } catch(error) {
+        console.warn("Error Logging: ", error)
+    } finally {
+        console.log("The final number is", num)
+    }
+
+this keyword refers to entire body of an object, of which it belongs to
+      const person5 = {
+            'name' : 'Praj',
+            speak(name) {
+                console.log(`Kimosabe ${name}`);
+            }
+        }
+        person5.speak("Pratik")
+
+          const person5 = {
+        'name' : 'Pratik',
+        speak() {
+            console.log(`Moti ${this.name}`);
+
+        }
+      }
+      person5.speak()
+
+      function counter() {
+        if(this.total === undefined) {
+            this.total = 1
+        } else {
+            this.total++;
+        }
+        console.log("Running counter. Total is", this.total)
+    }
+    counter()
+    counter()
+    counter()
+    counter()
+    counter()
+
+Arrow functions
+    const hello = function() {
+            return "Hello Praj"
+        }
+        const greeting = hello()
+        console.log(greeting)
+
+    function hello() {
+            return "Hello Praj"
+        }
+        const greeting = hello()
+        console.log(greeting)
+       
+    const hello = () => {
+        console.log("Hello")
+      }
+      hello()
+
+    const hello = () => "Hello from one line function"
+   hello()
+
+    const myNewGreeting = (name) => {
+        console.log(`Welcome, ${name}`)
+        }
+        myNewGreeting("Prajwal")
+
+     const myNewGreeting = (name) => console.log(`Welcome, ${name}`)
+ 
+        myNewGreeting("Prajwal")
+    
+    function myName(name) {
+            ...
+        }
+    const anonymousFunction = function(name) {
+            ...
+        }
+     const arrowFunc1 = (name) => {
+            ...
+            ...
+        }
+    const arrowFunc2 = (name) => ...
+
+    const myNewGreeting = (name) => console.log(`Welcome, ${name}`)
+        myNewGreeting("Prajwal")
+
+Javascript classes is another way of writing an object
+        class MyClassName {
+            speak() {
+                console.log("Get Hype")
+            }
+        }
+        const thing = new MyClassName()
+        thing.speak()
+
+        class MyClassName {
+            setName(name) {
+                this.name = name
+            }
+            speak() {
+                console.log(`Get Hype is a siren form ${this.name}`)
+            }
+        }
+        const thing = new MyClassName()
+        thing.setName("Vease")
+        thing.speak()
+
+        class MyClassName {
+            setName(name) {
+                this.name = name
+            }
+            speak() {
+                if(this.name === undefined) {
+                    this.name = "Unnamed Singer"
+                }
+                console.log(`Get Hype is a siren form ${this.name}`)
+            }
+        }
+        const thing = new MyClassName()
+        thing.setName("Vease")
+        thing.speak()
+
+Class Constructors and where class outpace objects
+    Hard method:
+             class person {
+                setName(name){
+                this.name = name
+                }
+            }
+            const p = new Person()
+            p.setName("Prajwal")
+
+    Easy Method:
+               class Person {
+                constructor(name) {
+                    this.name = name
+                }
+                greeting() {
+                    console.log(`Hello from ${this.name}`)
+                }
+                setName(name) {
+                    this.name = name
+                }
+            }
+            const praj = new Person("Pratik");
+            praj.greeting();
+            praj.setName("Praj");
+            praj.greeting()
+
+JSON - Javascript object notation - lightweight data interchange format
+            {
+            'name' : 'Praj',
+            'favFoods' : ['Pizza', 'tacos', 'Salmon'],
+            'age' : 31,
+            'Sibling' : [
+                {
+                    'name' : 'Pratik',
+                    'age' : 19
+                }
+            ]
+
+        }
+
+Above is the format for JSON just without the variable name
+it's so another server can consume it
+
+
+Ajax - Asynchronous JavaScript and XML
+    not a programming language 
+    it's a combination of XML and Http request
+    only way to send and accept data from server
+    super lightweight 
+    can use fetch api instead of xml/https
+
+final project:
+randomly select character from swapi.tech
+    eventListener (like a button)
+    fetch() swapi.tech or pokeapi.co
+        .then()
+        .then()
+    querySelectors
+    
