@@ -1,0 +1,56 @@
+to reach terminal use command + space
+
+~ date shows date
+~ cal shows calendar
+~ pwd show location of folder
+~ open . shows all the folders in the directory
+~ ls shows the folder but not hidden files
+~ ls -la shows all folder including hidden files with ownership and group who own
+~ clear clears the terminal
+cd (change directory)
+    using tab will shows all the directory
+    q will leave the cd display
+    ~ cd Music/ directs to music folder
+    ~ cd ../ moves back one folder
+    ~ cd ~/ reverts to default path 
+
+searching for files 
+    ~ ls -la | grep ".py"
+    ~ ls -la | grep "file info"
+    there is also shell script language type
+
+renaming a file is samething as moving a file
+    ~ mv stands for Move
+    ~ mv current_name change_name
+
+copying files 
+    ~ cp file_name new_file_name copies the file_name
+
+making new directories 
+    ~ mkdir Filename 
+
+Creating new empty files
+    ~ touch Filename when in the path 
+
+Editing Files in Command Line
+    ~ vim is more powerful yet more complicated to edit in command Line
+    ~ nano filename 
+    contrl o to write out
+    control x to exist
+
+Displaying internal files without editing it
+    ~cat example.txt (cat stands for concatenation)
+
+How to remove a file
+    ~ rm filename rm = remove
+    be careful when deleting (impossible to retrieve once deleted)
+To remove a directory
+    ~ rmdir Example/
+    
+WARNING: rm -r leads to trouble ENSURE you're in the correct path
+
+Executing last command written
+
+
+
+
