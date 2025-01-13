@@ -1,0 +1,67 @@
+API = Application Programming Interface
+    not a visual interface like we see in this presentation
+    corresponds from computer to website
+    computer to computer
+    all languages support restful API
+    API is like a waiter in a restaurant
+RESTful API = Representational State Transfer
+    client computer asks anoter computer for data or to take an action 
+JSON - JavaScript Object Notation
+    structured key value pair
+HTTP Requests
+    : GET, POST, PUT, DELETE, PATCH
+    CRUD - Create Read Update Delete
+    Get: 
+        loading website
+        request to get data from another computer
+        simply asking for data not to perform a task
+        not creating, updating or deleting
+        most common request type
+        uses READ crud operation
+    POST: 
+        Does not go through standard URL but use it for endpoint
+        asks another computer to create a new resource
+        return data about the newly created resource
+        uses CREATE crud operation
+    Delete:
+        Does not got through the standard URL but uses it for the endpoint
+        Asks another computer to delete a single resource or a list of resources
+        use with caution
+        uses DELETE crud operation
+    Patch:
+        does not go through standard URL but uses it as the endpoint
+        asks another computer to UPDATE a piece of a resource
+        not fully supported by all browsers so we typically fall back on PUT Requests
+        ex) updating a user's first name
+        partial UPDATE/Modify
+    PUT:
+        does not go through standard URL but use a URL as the endpoint
+        Asks another computer to UPDATE an entire resource
+        if resource does not exist the API might decide to CREATE the resource
+        otherwise uses UPDATE/REPLACE
+
+API can be written in any language as long as it can read server side language
+    will return in JSON or XML (eXtensible Markup Language)
+    Browsers use JavaScript for their API Requests
+    Servers use any language that runs on that computer
+
+Requests involves one of the five commands while the returned data is a response
+    get, post, put, patch, or delete
+    HTTP Status Code is in the form of number and tells what's correct and not
+
+Common HTTP Status Codes:
+Healthy Responses (2--)
+    200 - OK (Request accepted)
+    201 - Created (Post requests often return 201s whhen a resource is created)
+    202 - Accepted (When a request is accepted but its not done proessing. Maybe the task goes into a queue)
+Redirect Responses (3--)
+    301 - Moved Permanently (When the endpoint as permanently changed. Update your endpoint)
+    302 - Found (Endpoint you're accessing is temporarily move to somewhere else)
+Client Responses (4--)
+    400 - Bad Request (Server cannot or will not process your request. Often this is due to malformed API keys or an invalid payload)
+    401 - Unauthorized (You're not allowed here. Usually tis is because you're missing authentication credentials {API keys})
+    403 - Forbidden (Servers understand your request but won't execute it. API keys might not have the right permissions or you're trying to use an endpoint that you do not have access to)
+    404 - Not Found (There's nothing here. Move along, move along)
+    405 - Method Not Allowed (using the wrong TTP method. Endpoint might only accept GET requests and you might be POSTing to it for example)
+Server Responses (5--)
+    500 - Internal Server Error (Server hhad a problem and couldn't process the request. Only time you are out of control)
