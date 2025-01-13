@@ -1,0 +1,381 @@
+going from class component to function components (101 to 201)
+
+to stop react:
+sudo killall -9 node
+
+When given ajv error
+rm -rf node_modules
+rm package-lock.json  # or yarn.lock if you're using Yarn
+npm install  # or yarn install if you're using Yarn
+
+npm ls ajv ajv-keywords
+
+npm install ajv@latest ajv-keywords@latest
+sudo npm start
+
+
+When unable to save
+ls -l
+sudo chown pgbuilder:staff /Users/pgbuilder/Desktop/react-201/moviebrowser/public/index.html
+adjust file name as necessary
+another example:
+ls -l /Users/pgbuilder/Desktop/react-201/moviebrowser/src/App.js
+sudo chown pgbuilder:staff /Users/pgbuilder/Desktop/react-201/moviebrowser/src/App.js
+
+
+To standardize code - use either functional or class components not together
+use /> for self-closing tag (<img /> <br /> <hr /> <br />)
+dropdown works through javascript
+
+When openning new file yet needed authorization:
+ls -l /Users/pgbuilder/Desktop/react-201/moviebrowser/src
+sudo chown -R pgbuilder:staff /Users/pgbuilder/Desktop/react-201/moviebrowser/src
+
+function Navbar() { return (
+
+)}
+== or ==
+const Navbar = () => {
+    return (
+
+    )
+}
+React assume import a file is js
+
+
+switch statements are quick elif else
+        switch(case) {
+        case "Thing":
+            do something
+            break;
+        case default:
+            do something
+            break;
+            }
+
+----  ------   ------App.js ------ -------   ------
+import logo from './logo.svg';
+import './App.css';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import AboutView from './components/AboutView';
+import { Routes, Route} from 'react-router-dom';
+
+
+function App() {
+  return (
+    <div>  
+      <Navbar />
+     
+      <Routes>
+        <Route path="/" exact element={<Home />} />
+        
+        <Route path="/about" element={<AboutView />} />
+
+      </Routes>
+      
+    </div>
+  );
+}
+
+export default App;
+------ ------ ------- Index.js------ --------   -----------
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import {BrowserRouter} from 'react-router-dom';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+   <BrowserRouter>
+    <App />
+   </BrowserRouter>
+  </React.StrictMode>
+);
+_____________________________
+
+Replace a with Link and href with to in Navbar.js while import { Link } from "react-router-dom";
+
+this.state no available in function component only class component
+useState, known as hook, 
+
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchText, setSearchText] = useState('');
+
+  console.log(searchText, "see the default")
+  setTimeout(() => {
+      setSearchText("New text")
+      console.log(searchText, "is the new text")
+  }, 2000)
+
+
+in react input field is read only if you set the value
+
+set props in app.js to make page dynamic and inputable
+API Access Token:
+eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NmY4MjkxMzBkZDJhM2Y0NTZiMzhiNTg2ZGM2ZDUwYyIsIm5iZiI6MTczNjQ5OTk0OS4wOTksInN1YiI6IjY3ODBlMmVkMzg4MTc0MzdlMmJiMTY0ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kkCcGaj6J-T9Mcm-RWXru7meu_v2Gr_AEkG3vu1WCw8
+API key: 56f829130dd2a3f456b38b586dc6d50c
+Doesn't work:
+https://api.themoviedb.org/3/search/movie?api_key=56f829130dd2a3f456b38b586dc6d50c&query={searchText}&page=1include_adult=false
+
+ useEffect(() => {
+    console.log(searchText, "is the search text")
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=56f829130dd2a3f456b38b586dc6d50c&query={searchText}&page=1include_adult=false`)
+      .then(response => response.json())
+      .then(data =>
+        console.log(data)
+      )
+  }, [searchText])
+
+  -------------------
+
+             useEffect(() => {
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9
+          eyJhdWQiOiI1NmY4MjkxMzBkZDJhM2Y0NTZiMzhiNTg2ZGM2ZDUwYyIsIm5iZiI6MTczNjQ5OTk0OS4wOTksInN1YiI6IjY3ODBlMmVkMzg4MTc0MzdlMmJiMTY0ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ
+          56f829130dd2a3f456b38b586dc6d50c",
+      },
+    };
+
+    if (searchText) {
+      fetch(`https://api.themoviedb.org/3/search/movie?query=${searchText}&include_adult=false&language=en-US&page=1`,
+        options
+      )
+        .then((response) => response.json())
+        .then((data => {
+          console.log(data.results);
+          setSearchResults(data.results);
+          })
+          ;
+        
+        
+        }
+  }, [searchText])
+
+  ------Most Operable yet still not authorizing -------
+  useEffect(() => {
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NmY4MjkxMzBkZDJhM2Y0NTZiMzhiNTg2ZGM2ZDUwYyIsIm5iZiI6MTczNjQ5OTk0OS4wOTksInN1YiI6IjY3ODBlMmVkMzg4MTc0MzdlMmJiMTY0ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ",
+        
+
+      },
+    };
+ 
+    if (searchText) {
+      fetch(
+        `https://api.themoviedb.org/3/search/movie?query=${searchText}&include_adult=false&language=en-US&page=1`,
+        options
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data.results);
+          setSearchResults(data.results);
+        });
+    }
+  }, [searchText]);
+
+
+-----Authorized through API key -----
+
+function App() {
+
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchText, setSearchText] = useState('');
+  
+  useEffect(() => {
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NmY4MjkxMzBkZDJhM2Y0NTZiMzhiNTg2ZGM2ZDUwYyIsIm5iZiI6MTczNjQ5OTk0OS4wOTksInN1YiI6IjY3ODBlMmVkMzg4MTc0MzdlMmJiMTY0ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ",
+        
+
+      },
+    };
+ 
+    if (searchText) {
+      fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=56f829130dd2a3f456b38b586dc6d50c&query=${searchText}&include_adult=false&language=en-US&page=1`,
+        options
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data.results);
+          setSearchResults(data.results);
+        });
+    }
+  }, [searchText]);
+
+  return (
+    <div>  
+      <Navbar searchText={searchText} setSearchText={setSearchText} />
+      
+      <Routes>
+        <Route path="/" exact element={<Home />} />
+        
+        <Route path="/about" element={<AboutView />} />
+
+        <Route path="/search" element={<SearchView keyword={searchText} searchResults={searchResults} />} />
+      </Routes>
+      
+    </div>
+  );
+}
+
+export default App;
+
+------------
+
+useNavigate instead of useHistory to push into navigate(/search)
+
+Can map search results 
+
+   import Hero from './Hero';
+
+
+
+
+        const SearchView = ({keyword, searchResults}) => {
+            const title = `You are searching for ${keyword}`
+            
+            const resultsHtml = searchResults.map((obj, i) => {
+                return <div>{obj.original_title}</div>
+            })
+            return (
+                <>
+                    <Hero text={title} />
+                    {resultsHtml}
+                </>
+            )
+        }
+
+        export default SearchView;
+        ------------------- with cards below ------------
+        import Hero from './Hero';
+
+const MovieCard = ({movie}) => {
+    const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+    return (
+        <div className="col-lg-4 col-md-2 col-3 my-4">
+        <div className="card" >
+  <img src={posterUrl} className="card-img-top" alt={movie.original_title} />
+  <div className="card-body">
+    <h5 className="card-title">{movie.original_title}</h5>
+    <a href="#" className="btn btn-primary">Show Details</a>
+  </div>
+</div>
+</div>
+    )
+}
+
+
+const SearchView = ({keyword, searchResults}) => {
+    const title = `You are searching for ${keyword}`
+    
+    const resultsHtml = searchResults.map((obj, i) => {
+        return <MovieCard movie={obj} key={i} />
+    })
+    return (
+        <>
+            <Hero text={title} />
+            {resultsHtml &&
+                <div className="container">
+                    <div className="row">
+                        {resultsHtml}
+                        </div>}
+                    </div> 
+            }
+
+        </>
+    )
+}
+
+export default SearchView;
+
+
+-------------------------------------------------------------------
+import Hero from './Hero';
+import { useParams } from 'react-router-dom';
+import {useEffect, useState} from 'react';
+ 
+const MovieView = () => {
+    const {id} = useParams()
+
+
+
+    const [movieDetails, setMovieDetails] = useState({})
+
+    useEffect(() => {
+        console.log('make an api request', id)
+        fetch(`https://api.themoviedb.org/3/search/movie/${id}?api_key=56f829130dd2a3f456b38b586dc6d50c&include_adult=false&language=en-US&page=1`)
+            .then(response => response.json())
+            .then(data => {
+                setMovieDetails(data)
+            })
+    }, [id])
+    return (
+        <>
+        <Hero text={movieDetails.original_title} />
+        
+      
+        </>
+     
+    )
+  }
+
+export default MovieView;
+--- --- --- - -----
+import Hero from './Hero';
+import {Link} from 'react-router-dom';
+
+const MovieCard = ({movie}) => {
+    const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+    const detailUrl = `/movies/${movie.id}`
+    return (
+        <div className="col-lg-4 col-md-2 col-3 my-4">
+        <div className="card" >
+  <img src={posterUrl} className="card-img-top" alt={movie.original_title} />
+  <div className="card-body">
+    <h5 className="card-title">{movie.original_title}</h5>
+    <Link to={detailUrl} className="btn btn-primary" >Show Details </Link>
+  </div>
+</div>
+</div>
+    )
+}
+
+
+const SearchView = ({keyword, searchResults}) => {
+    const title = `You are searching for ${keyword}`
+    
+    const resultsHtml = searchResults.map((obj, i) => {
+        return <MovieCard movie={obj} key={i} />
+    })
+    return (
+        <>
+            <Hero text={title} />
+            {resultsHtml &&
+                <div className="container">
+                    <div className="row">
+                        {resultsHtml}
+                        </div>
+                    </div> 
+            }
+
+        </>
+    )
+}
+
+export default SearchView;
