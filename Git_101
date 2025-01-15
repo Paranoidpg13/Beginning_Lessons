@@ -1,0 +1,125 @@
+Version control and program collaborating tool
+Github is central location in collaboration
+
+Repositories are location for code
+
+-- if code does not save --
+sudo chown -R pgbuilder /Users/pgbuilder/test-repository
+--                       --
+
+.md - markdown
+README files automatically show up in the repository
+
+commit is update to a larger repository
+    every commit has a hash to look at code from a different point in time
+
+watch gives notifications when repository is modified
+star is good feedback (like in facebook)
+
+review and peer review pertinent when commiting
+
+once git is installed
+    ~ git config --global user.name "Prajwal Giri"
+    ~ git config --global user.email "reachprajwalgiri@gmail.com"
+    ~ cat ~/.gitconfig shows username and password
+
+test-repository
+    ~ mkdir test-dir/
+    ~ cd test-dir/
+    ~ git clone URL of the repository
+
+editing files on computer
+    after editing files when opening the file path with code .
+    you can use ~ git status to find the edited confirmation
+    ~ git diff README.md which is the file shows which file was modified
+    ~ git status to intialize (potentially)
+    ~ git add README.md
+    ~ git status to show update (staged file)
+        read means deleted and green means added
+
+Your first commit
+    ~ git commit -m "Updated the readme file"
+    ~ git status to show update
+    ~ git log --oneline
+        shows the direction of push and pull
+
+Pushing file to Github
+    ~ git push origin main
+    The key fingerprint is:
+SHA256:UqcsvLwTUgzDqDwxNTpWoG1D+I2sHgFGaeb7e0gYu7Q reachprajwalgiri@gmail.com
+The key's randomart image is:
++---[RSA 4096]----+
+|.+=*             |
+|+X+ =            |
+|OB*o +  . .      |
+|oB=...oo o       |
+| .B  .+ S        |
+|.* ....+         |
+|o * ..o.         |
+| E o ...         |
+|   .o ..         |
++----[SHA256]-----+
+
+
+---- after saving in /var/root/.ssh/id_rsa -----
+The key fingerprint is:
+SHA256:VuqiUAbEp/a1r4rM8+fG62gg3ZJEJvQE4CR6T7PzpL8 reachprajwalgiri@gmail.com
+The key's randomart image is:
++---[RSA 4096]----+
+|==o.             |
+|*.* .            |
+|.=o+o     .      |
+| .++ o.  o       |
+| + +*...S        |
+|. =oo=.o         |
+| ..o..o..        |
+| o.o.++..        |
+|  ++=*E+         |
++----[SHA256]-----+
+
+---------------------------
+Your public key has been saved in /Users/pgbuilder/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:oucBox68+zPS7cv5sJYoYwtX1LfSEpCmOoY31eZendI reachprajwalgiri@gmail.com
+The key's randomart image is:
++---[RSA 4096]----+
+|    ..           |
+|    oo           |
+|   o..o .        |
+|  ... o+ .       |
+|.. .+o+ So .     |
+|+ooo +.+o E      |
+|oo=o.++o .       |
+| +=o=+==         |
+| .=B.=Bo.        |
++----[SHA256]-----+
+
+-----After onset to default path ------
+Your public key has been saved in /Users/pgbuilder/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:gYpGAuf12ZqpizwPq/vvHC442X7UFvwfw79fpXN2MaQ your_email@example.com
+The key's randomart image is:
++---[RSA 4096]----+
+|. . .            |
+|.o . . +         |
+|. o  .+ o      . |
+| o . .o+ .    o  |
+|  o ..+oS.   E o.|
+| .  ..o . +    .+|
+| +..o.   . +  o =|
+|+.+*.o    . .  =.|
+|o**BB       .o.  |
++----[SHA256]-----+
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDnaZsgogkLZ/9t6+Y6o7i8QYgK55rZ7luRJ4jo5gUCjwH02vZRJkiqgN01KD051zS9ofrHpd4oYppKxtH26WvYwRytWYsgN7wicV1OShaj5wBi/EYtUaB8pLNfI1L/A1axZXpIjRByGe7wm1wy4HB7jITPmjM9zxh4o4+zVt93nGXgyowEt8EAgFCIpTW+QJwJSPdUv6ubzlfnW/AzH/FmO04jj47Efo/qNRzlD9kBNUvQBw79+MY/qElbNFWzVTYkQ3nUEW4LmpyoPKFDecdI5vYjqv1YU0lWC0jRGonTWKl1i13wDaoHvJUCFCkMHYAikCu95YGXcWft4Ofylh3IUt/NzjvGiCyzVZoV6Sa+cOTyblb18gXwAizw4jfGD6t1kzdOY58RAMB+3yFgedhd/5tx8ftG18yvkZEuZJN83dwYKhp9Pk/vUO7aswRPlGv2UBmnPcJsfR8vFoKyvpij6Sd6Xiy4cq6qlVgJOd8zlPWLfvrojX1kz0qdMB9NRPsgWqXHufSmTSzsLUD3IvgB8DSpb2yGx50Gq6w/r761Zv3y6pQzBEnsvclQOQcoM5cIZ+LCs77BohrYsBPvrON05CGYWgTZcBIcq4lsnMp4Ev/CTMZYXoyBgmIb1LAylAEqTmtF+9SWONQZ1+IDM5dGTfVmXd6xKennW55IHcZY8w== reachprajwalgiri@gmail.com
+
+Pulling requests
+ ~ git pull origin main
+ ~ git log --oneline
+
+Brief statments to execute push and pull
+    git status
+    git add README.md
+    git commit -m "From local computer"
+    git push origin main
+    
