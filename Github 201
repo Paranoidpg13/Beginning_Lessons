@@ -1,0 +1,79 @@
+Seeing previous commits using checkout command
+    ~ git checkout 39e9fa8 (key for the commit listed after doing ~ git log --oneline)
+    to leave and return to branch:
+    ~ git branch
+    ~ git checkout main
+    ~ git branch
+
+Issues are text not code
+    can assign people to Issues
+    can filter through labels for the issue 
+
+Branches are a copy of all code with a couple of changes
+    ~ git checkout -b 2025-new-branch-name (branchname)
+    sudo git status
+    sudo git add "New File 2025 branch.txt"
+    git status
+    git commit -m "New branch commit"
+    sudo git push origin 2025-new-branch-name
+
+    git checkout main/master will hide the branch in VScode
+    git checkout 2025-new-branch-name unveils the branch
+
+Pull requests
+    once pushed the branch can be pulled into main
+
+forking requires collaboration not for owned repositories
+
+Deleting repository found in repository setting
+
+Secret gist is secret to search engines but avaiable to those given URL
+
+Creating git alias
+    ~ git lg is different way to see git log --oneline
+    ~ code ~/.gitconfig
+
+
+[user]
+	name = Your Name
+	email = your-email@website.com
+[core]
+    editors = vim
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[color]
+	ui = true
+[alias]
+    lg = log --topo-order --all --graph --date=local --pretty=format:'%C(green)%h%C(reset) %><(55,trunc)%s%C(red)%d%C(reset) %C(blue)[%an]%C(reset) %C(yellow)%ad%C(reset)%n'
+    pr  = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+	co = checkout
+[rebase]
+    autostash = true
+[pull]
+    rebase = true
+[rerere]
+    enabled = true
+[gpg]
+	program = gpg2
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+Project:
+    fork git-essentials
+    clone into own repository
+    create new branch
+    pull the branch
