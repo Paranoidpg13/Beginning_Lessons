@@ -1,0 +1,431 @@
+can use in operator to compare to list 
+ Praj in names will result in True (has to be exact match)
+ instead of loops that has iterate through the whole list
+    my_answer = "rock"
+    options = ["rock", "paper", "scissors"]
+
+    if my_answer in options:
+        print("Rock is one of the possible options")
+    --- with input ---
+    my_answer = input("Give a word? ")
+    options = ["rock", "paper", "scissors"]
+
+    if my_answer in options:
+        print("Rock is one of the possible options")
+    else:
+        print("Wrong answer try again")
+    --- dictionary ---
+    key = "name"
+    person = {
+        "name": "Praj",
+        "profession": "Unemployed"
+
+    }
+    if key in person:
+        print("Name is valid dictionary key in the person object")
+
+Not operator (not, !var is for other languages)
+    my_thing = False
+
+    if my_thing != True:
+        print("This is not true")
+    --- not operator ---
+    my_thing = False
+
+    if not my_thing:
+        print("This is not true")
+    --- more to show ---
+    food = ['pizza', 'chicken', 'juice']
+    item = "Cookie"
+    if item not in food:
+        print(f"{item} is not in the list of foods")
+
+Reading files
+    with open('filename', 'r') as files:
+        print(file.read())
+
+    with open('readme.txt', 'r') as file:
+        print(file.read())
+
+    with open('readme.txt', 'r') as file:
+        # print(file.read())
+        content = file.read()
+
+    print("The content is", content)
+
+Creating files 
+    with open('writing_files.txt', 'w') as file:
+        file.write("Hello from Python 201")
+        --- overwrote ---
+    with open('writing_files.txt', 'w') as file:
+        file.write("Hello from Python 201 from second line")
+        --- appending ---
+    with open('writing_files.txt', 'a') as file:
+        file.write("A second line")
+        --- new line and tabbed with appending ---
+    with open('writing_files.txt', 'a') as file:
+        file.write("\nAppended new line")
+        file.write("\n\tThis is tabbed")
+
+Creating multiple lines
+    with open('emails.txt', 'r') as emails:
+        print(emails.readlines())
+         #prints array of emails 
+         # ['giripratik33@gmail.com\n', 'paranoidpg13@gmail.com\n', 'reachprajwalgiri@gmail.com\n', 'reach_bijaya@hotmail.com\n', 'parashuinus@gmail.com\n']
+         # notice \n indicating new line
+    
+    with open('emails.txt', 'r') as emails:
+        emails = emails.readlines()
+
+    for email in emails:
+    
+        if "gmail" in email:
+            print(email.rstrip()) #without the strip there would spaces between emails 
+
+         # giripratik33@gmail.com
+         # paranoidpg13@gmail.com
+         # reachprajwalgiri@gmail.com
+         # parashuinus@gmail.com
+    good for webscraping
+
+Writing a file and executing
+    filename = input("What is the filename? ")
+    content = input("Enter the content: ")
+
+    with open(filename, 'w') as file:
+        file.write(content)
+    
+    --- to read file with yes or no ---
+    filename = input("What is the filename? ")
+    content = input("Enter the content: ")
+
+    with open(filename, 'w') as file:
+        file.write(content)
+
+    open_file = input("would you like to read this file? ")
+
+    if open_file in ['y', 'n']:
+        if open_file =='y':
+            with open(filename, 'r') as file:
+                print(file.read())
+
+Function Nested Inside Functions
+    def thing1(name):
+        print("Welcome to thing 1", name)
+        def thing2(name):
+            print("Welcome to thing 2", name)
+        thing2(name)
+
+    thing1("Praj")
+    ---- or ----
+    def thing1(name):
+        print("Welcome to thing 1", name)
+        def thing2():
+            print("Welcome to thing 2", name)
+        thing2()
+
+    thing1("Praj")
+
+Making simple API requests
+    have to use package called requests
+    pip allow installation of third party packages
+        curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+        python3 get-pip.py
+        pip -V
+        pip install requests
+        >>> import requests
+    import requests
+
+    req = requests.get("https://facebook.com")
+    print(req.status_code)
+    ------
+    import requests
+    import time
+    while True:
+        req = requests.get("https://courses.codingforeverybody.com")
+        print(req.status_code)
+        if req.status_code != 200:
+            #email me or text me
+            pass
+        time.sleep(3)
+
+Making a JSON API request
+    import requests
+
+    req = requests.get("https://swapi.py4e.com/api/people/1/")
+    person = req.json()
+    print(f"Name is\t\t{person['name']}")
+    print(f"Birth year is\t\t{person['birth_year']}")
+
+    print("Films involved in:")
+    for film in person['films']:
+        req = requests.get(film)
+        film = req.json()
+        print("Film is: ", film['title'])
+
+Reading and Editing JSON 
+    import json
+
+    LS = '''{
+        "name": "Luke Skywalker",
+        "height": "172",
+        "mass": "77",
+        "hair_color": "blond",
+        "skin_color": "fair",
+        "eye_color": "blue",
+        "birth_year": "19BBY",
+        "gender": "male",
+        "homeworld": "https://swapi.py4e.com/api/planets/1/",
+        "films": [
+            "https://swapi.py4e.com/api/films/1/",
+            "https://swapi.py4e.com/api/films/2/",
+            "https://swapi.py4e.com/api/films/3/",
+            "https://swapi.py4e.com/api/films/6/",
+            "https://swapi.py4e.com/api/films/7/"
+        ],
+        "species": [
+            "https://swapi.py4e.com/api/species/1/"
+        ],
+        "vehicles": [
+            "https://swapi.py4e.com/api/vehicles/14/",
+            "https://swapi.py4e.com/api/vehicles/30/"
+        ],
+        "starships": [
+            "https://swapi.py4e.com/api/starships/12/",
+            "https://swapi.py4e.com/api/starships/22/"
+        ],
+        "created": "2014-12-09T13:50:51.644000Z",
+        "edited": "2014-12-20T21:17:56.891000Z",
+        "url": "https://swapi.py4e.com/api/people/1/"
+    }'''
+    LS = json.loads(LS)
+    print(LS['name'])
+
+    ---to load back into dictionary ---
+    LS['name'] = "Rene Liwy"
+    LS_str = json.dumps(LS)
+    print(LS)
+
+Function *args
+    def add_numbers(*args):
+        print(args)
+        print(type(args))
+
+    add_numbers(1,3,5,7,9)
+    
+     #returns as tuple
+     #(1, 3, 5, 7, 9)
+     #<class 'tuple'>
+    ----------
+    def add_numbers(*args):
+        total = 0
+        for num in args:
+            total = total + num
+        return total
+
+
+    total = add_numbers(1,3,5,7,9)
+    print(total)
+     #25
+    * is different from rest operator in (...) js yet conducts same funtion 
+        denotes delimited
+    
+Function **kwargs
+    keyword arguments denoted delimited with two stars 
+    def thing(name, age=28, *args, **kwargs):
+        pass
+    instead of tuple, kwargs return as dictionary
+
+    -------
+    def person(**kwargs):
+        print(kwargs)
+        print(type(kwargs))
+
+        if 'age' in kwargs:
+            print("You are ", kwargs.get('age'))
+
+    person(name="Jacob", age=27, brain="Huge")
+
+    ------
+    def order_pizza(name, address, **toppings):
+        print(f"Order is for {name}")
+        print(f"Ship it to {address}")
+        price = 18.00
+        for key, value in toppings.items():
+            price = price + 2.00
+        print(f"The total price is {price}")
+        return price
+
+    total_price = order_pizza("Amanda", "Canada", jalapenos=True, extra_cheese=True, chicken=True)
+
+muttable and immutable
+    changeable vs unchangable 
+    string = "The fox jumped over the cow"
+    string = "Overwritten"
+    print(string.upper())
+    print(string)
+     #OVERWRITTEN
+     #Overwritten
+    names = ["Prajwal", "Pratik", "Mommy", "Daddy"]
+    names.append("Rhubarb")
+    print(names)
+     #['Prajwal', 'Pratik', 'Mommy', 'Daddy', 'Rhubarb']
+    strings are immutable and list is muttable
+
+List enumeration
+    animals = ["Talon", "Dina", "Wromie", "Dogtooth"]
+    for index, animal in enumerate(animals):
+        print(animal)
+        Talon
+        Dina
+        Wromie
+        Dogtooth
+    --------
+    animals = ["Talon", "Dina", "Wromie", "Dogtooth"]
+    for animal in enumerate(animals):
+        print(animal)
+        (0, 'Talon')
+        (1, 'Dina')
+        (2, 'Wromie')
+        (3, 'Dogtooth')
+    --------
+    animals = ["Talon", "Dina", "Wromie", "Dogtooth"]
+    for index, animal in enumerate(animals):
+        print(index, animal)
+    0 Talon
+    1 Dina
+    2 Wromie
+    3 Dogtooth
+    --------
+    animals = ["Talon", "Dina", "Wromie", "Dogtooth"]
+    for index, animal in enumerate(animals):
+        if index % 2 == 0:
+            continue
+        print(animal)
+        Dina
+        Dogtooth
+    --------
+    animals = ["Talon", "Dina", "Wromie", "Dogtooth"]
+    for index, animal in enumerate(animals):
+   
+        print(f"{index+1}.\t{animal}")
+        1.      Talon
+        2.      Dina
+        3.      Wromie
+        4.      Dogtooth
+
+List comprehension
+    shorthand method of writing a for looping and putting data into list
+    numbers = []
+    for num in [1,3,5,7,9]
+        numbers.append(num**2)
+    print(numbers)
+
+    numbers = [num**2 for num in [1,3,5,7,9]]
+    print(numbers)
+     #[1, 9, 25, 49, 81]
+     #[1, 9, 25, 49, 81]
+
+Dictionary comprehension
+ to create a dictionary out of list of tuples
+    names = [("name", "Prajwal"), ("Occupation", "Unemployed")]
+    d = {}
+    for key, value in names:
+        d[key] = value
+    print(d)
+    print(type(d))
+
+    d = {key:values for key, values in names}
+    print(d)
+     #{'name': 'Prajwal', 'Occupation': 'Unemployed'}
+     #<class 'dict'>
+     #{'name': 'Prajwal', 'Occupation': 'Unemployed'}
+
+    d = dict(names)
+
+     #{'name': 'Prajwal', 'Occupation': 'Unemployed'}
+
+Get Dictionary values (With Defaults)
+    courses = {
+        "js": "Javascript 101",
+        "python": ["Python 101", "Python 201"],
+        "html": "HTML 101"
+    }
+    print(courses.get("js", None))
+     #Javascript 101
+    
+    --------
+    courses = {
+        "js": "Javascript 101",
+        "python": ["Python 101", "Python 201"],
+        "html": "HTML 101"
+    }
+    print(courses.get("css", "CSS 101"))
+     #CSS 101
+    ------
+    courses = {
+        "js": "Javascript 101",
+        "python": ["Python 101", "Python 201"],
+        "html": "HTML 101"
+    }
+    if courses.get("css", "CSS 101"):
+        print("You are enrolled in CSS 101")
+    ------when using default------
+    courses = {
+        "js": "Javascript 101",
+        "python": ["Python 101", "Python 201"],
+        "html": "HTML 101"
+    }
+    if courses.get("css", None):
+        print("You are enrolled in CSS 101")
+        ##
+
+Virtual Environments
+    ~ python -m venv .venv
+    ~ source .venv/bin/activate
+    (.venv) .venvPrajwals-MacBook-Pro:Python201 pgbuilder$ pip install Django
+    ~ pip install Django
+    ~ pip show Django
+    ~ deactivate
+
+How to Learn Python By Exploring and using IPython
+    >>> name = "Python 201"
+    >>> name.capitalize()
+    'Python 201'
+    >>> name.endswith("201")
+    True
+    >>> words = name.split(" ")
+    >>> words
+    ['Python', '201']
+    >>> words.reverse()
+    >>> words
+    ['201', 'Python']
+    >>> course = ' '.join(words)
+    >>> course
+    '201 Python'
+    
+    ipython replaces python3 in the terminal
+    ~ quit() to leave ipython just like python3
+
+Python packages
+    can find packages on pypi
+
+    from colorama import init, Fore, Back, Style
+
+
+    init()
+
+    print(Fore.RED + 'some red text')
+    print(Back.GREEN + 'and with a green background')
+    print(Style.DIM + 'and in dim text')
+    print(Style.RESET_ALL)
+    print('back to normal now')
+
+API Requests Refresher
+
+Project: Pokemon caracter app
+ask for user input
+create dynamic URL basedur on step 1
+fetch the data from the URL in step 2
+convert JSON to a dictionary (var = json.loads(var))
+Print out pokemon data
