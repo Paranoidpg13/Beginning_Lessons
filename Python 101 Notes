@@ -216,17 +216,17 @@ Comparison Operators (> >= < <= == !=)
         print("You don't know how to code yet")
      #You don't know how to code yet
 
-    teacher = "Mrs. Ruiz"
+    teacher = "Mrs. Care"
 
-    if teacher == "Mrs. Ruiz":
+    if teacher == "Mrs. Care":
         print("Show the teacher portal")
     else:
         print("It does not appear")
      #Show the teacher portal
     
-    teacher = "Mrs. Ruiz"
+    teacher = "Mrs. Care"
 
-    if teacher.lower() == "mrs. ruiz":
+    if teacher.lower() == "mrs. care":
         print("Show the teacher portal")
     else:
         print("It does not appear")
@@ -415,4 +415,19 @@ Local server
     ~ python3 -m http.server
     reads localhost:8000
      given the files 
+    needs to be index.html to default to html page
+    can click control c to cancel
 
+importing packages and using them
+    can import random
+    use .choice with list 
+    >>> import random
+    >>> random.choice(["Rock", "Paper", "Scissors"])
+
+Project: Rock Paper Scissors game
+    random
+    while
+    input
+    print formatting
+    comparison Operators
+    break and continue
