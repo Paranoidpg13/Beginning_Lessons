@@ -1,0 +1,500 @@
+To direct to folder use cd Python and tab to find the proper folder
+
+instead of def class uses class, which uses an object
+    class ThisIsAnAnimal:
+        pass
+    
+    animal = ThisIsAnAnimal()
+
+    -----
+
+    class Animal:
+        property_1 = "Something"
+    
+    the_animal = Animal()
+    print(the_animal.property_1)
+     #Something
+
+    class uses dot notation unlike dictionary (which uses [type] for calling value)
+
+Class Properties and How to use them 
+    class Animal:
+        this_is_a_property = {
+            'key_1': 'Value 1'
+        }
+        
+    the_animal = Animal()
+    print(the_animal.this_is_a_property['key_1'])
+     #Value 1
+    
+    -------
+
+    class Animal:
+        this_is_a_property = {
+            'key_1': 'Value 1'
+        }
+        this_list = ['Kane', 'Kalob', 'Gully']
+    the_animal = Animal()
+    print(the_animal.this_list)
+     #['Kane', 'Kalob', 'Gully']
+
+    ---- When Indexing -----
+    class Animal:
+        this_is_a_property = {
+            'key_1': 'Value 1'
+        }
+        this_list = ['Kane', 'Kalob', 'Gully']
+    the_animal = Animal()
+    print(the_animal.this_list[2]) # or print(Animal.this_list)
+     #Gully
+
+    _like_this the underscore signifies private property
+
+
+Class Methods means function within class
+    class Animal:
+        this_is_a_property = {
+            'key_1': 'Value 1'
+        }
+        this_list = ['Kane', 'Kalob', 'Gully']
+
+        def this_is_a_method(self):
+            print(self.this_list)
+    the_animal = Animal()
+     #['Kane', 'Kalob', 'Gully']
+    self refers to class (Animal)
+    -----
+
+    class Animal:
+        this_is_a_property = {
+            'key_1': 'Value 1'
+        }
+        this_list = ['Kane', 'Kalob', 'Pratik']
+        def this_is_a_method(self):
+            print(self.this_list)
+            
+        @property
+        def get_Pratik(self):
+            return self.this_list[2]
+        
+    the_animal = Animal()
+    the_animal.this_is_a_method()
+    pratik = the_animal.get_Pratik
+    print("The cutest moti of all time is", pratik)
+     #['Kane', 'Kalob', 'Pratik']
+     #The cutest moti of all time is Pratik
+
+     ---- Appending to list ----
+    class Animal:
+        this_is_a_property = {
+            'key_1': 'Value 1'
+
+        }
+
+        this_list = ['Kane', 'Kalob', 'Pratik']
+
+        def add_name(self, name):
+            self.this_list.append(name)
+            return self.this_list
+        
+        def this_is_a_method(self):
+            print(self.this_list)
+
+        @property
+        def get_Pratik(self):
+            return self.this_list[2]
+        
+    the_animal = Animal()
+    # the_animal.this_is_a_method()
+    # pratik = the_animal.get_Pratik
+    # print("The cutest moti of all time is", pratik)
+    the_animal.add_name("Praj")
+    print(the_animal.this_list)
+     #['Kane', 'Kalob', 'Pratik', 'Praj']
+
+Class Clean Up
+    class Animal:
+        fur_color = "Orange"
+
+        def speak(self):
+            print("Rawwr")
+
+        def eat(self):
+            pass
+
+        def chase(self):
+            pass
+
+    tiger = Animal()
+    tiger.chase()
+    tiger.speak()
+     #Rawwr
+
+Class Inheritance
+    class Animal:
+        fur_color = "Orange"
+
+        def speak(self):
+            print("Rawwr")
+
+        def eat(self):
+            pass
+
+        def chase(self):
+            pass
+
+    class Tiger(Animal):
+        pass
+
+    tiger = Tiger()
+    tiger.speak()
+     #Rawwr
+
+    -------
+    class Animal:
+        fur_color = "Orange"
+
+        def speak(self):
+            print("Rawwr")
+
+        def eat(self):
+            pass
+
+        def chase(self):
+            pass
+
+    class Tiger(Animal):
+        def speak(self):
+            print("They're Great")
+
+    tiger = Tiger()
+    tiger.speak()
+    print(type(tiger))
+     #They're Great
+     #<class '__main__.Tiger'>
+    ---- More instantiated class ----
+    class Animal:
+        fur_color = "Orange"
+
+        def speak(self):
+            print("Rawwr")
+
+        def eat(self):
+            pass
+
+        def chase(self):
+            pass
+
+    class Tiger(Animal):
+        def speak(self):
+            print("They're Great")
+
+    class HouseCat(Animal):
+        def speak(self):
+            print("Meow")
+
+    tiger = Tiger()
+    tiger.speak()
+    cat = HouseCat()
+    cat.speak()
+     #They're Great 
+     #Meow
+    --------------Tri fur color --------
+    class Animal:
+        fur_color = "Orange"
+
+        def speak(self):
+            print("Rawwr")
+
+        def eat(self):
+            pass
+
+        def chase(self):
+            pass
+
+    class Tiger(Animal):
+        def speak(self):
+            print("They're Great")
+
+    class HouseCat(Animal):
+        fur_color = "Black"
+        def speak(self):
+            print("Meow")
+
+    tiger = Tiger()
+    tiger.speak()
+    cat = HouseCat()
+    cat.speak()
+    print(cat.fur_color)
+     #They're Great
+     #Meow
+     #Black
+
+Class Interfaces
+    -----Raised not implement error if there wasn't speak within housecat() ---
+    class Animal:
+        fur_color = "Orange"
+
+        def speak(self):
+            raise NotImplementedError
+
+        def eat(self):
+            pass
+
+        def chase(self):
+            pass
+    class HouseCat(Animal):
+        def speak(self):
+            print("Meow")
+
+    cat = HouseCat()
+    cat.speak()
+     #Meow
+
+Classes: the Super() Method
+    class Animal:
+        fur_color = "Orange"
+
+        def speak(self):
+            raise NotImplementedError
+
+        def eat(self):
+            print("I am eating yum yum yum")
+
+        def chase(self, animal="Gazelle"):
+            print("I am chasing a", animal)
+            
+    class HouseCat(Animal):
+        def speak(self):
+            print("Meow")
+        
+        def eat(self):
+            super().eat()
+            print("A can of tuna")
+        
+        def chase(self, animal):
+            super().chase(animal)
+            print(animal, "was caught")
+
+    cat = HouseCat()
+    cat.chase("Mouse")
+     #I am chasing a Mouse
+     #Mouse was caught
+
+Dunder Methods
+    dunder = double underscore
+    __init__ requires a parameter in the class to variable
+    class Animal:
+
+        animal_type = "unknown"
+
+        def __init__(self, fur_color):
+            self.fur_color = fur_color
+
+        def speak(self):
+            raise NotImplementedError
+
+        def eat(self):
+            print("I am eating yum yum yum")
+
+        def chase(self, animal="Gazelle"):
+            print("I am chasing a", animal)
+            
+    class HouseCat(Animal):
+        
+        def __init__(self, fur_color):
+            super().__init__(fur_color)
+            print("Fur color was saved to the class object")
+            self.animal_type = "House cat"
+            print(self.animal_type)
+
+        def speak(self):
+            print("Meow")
+        
+        def eat(self):
+            super().eat()
+            print("A can of tuna")
+        
+        def chase(self, animal):
+            super().chase(animal)
+            print(animal, "was caught")
+        
+        def get_fur_color(self):
+            print("Getting fur color: ", self.fur_color)
+
+    cat = HouseCat("Orange")
+    cat.get_fur_color()
+     #Fur color was saved to the class object
+     #House cat
+     #Getting fur color:  Orange
+
+Errors and Exceptions
+    try:
+        total = 1 / 0
+    except Exception:
+        total = 0
+
+    print(total)
+     #0
+    ---- with print statements ---
+    try:
+        print("Trying 1 / 0")
+        total = 1 / 0
+        print("This will not show up")
+    except Exception:
+        print("Exception was caught")
+        total = 0
+
+    print(total)
+     #Trying 1 / 0
+     #Exception was caught
+     #0
+    ------- useful application ----
+    num = input("What is a number? ")
+    try:
+
+        num = int(num)
+    except Exception:
+        num = "Unknown"
+    print(num)
+     #What is a number? l
+     #Unknown
+
+Catching Exceptions:
+ to continue code without breaks if there are any faults
+    num = input("Enter number? ")
+    num2 = input("Enter second number? ")
+
+    try:
+        num = int(num)
+        num2 = int(num2)
+        total = num / num2
+
+    except ValueError:
+        print("Num or num2 were not a valid numbers")
+    except ZeroDivisionError:
+        print("Numbers could not be divided")
+    except Exception as e:
+        print("Exception was caught")
+        print(type(e))
+        num = "Unknown"
+    print(num)
+
+Python Decorators:
+ @ signify decorator
+    def myfunc():
+        print("My name is Praj")
+
+
+    def my_decorator(func):
+        def wrapper():
+            print("Do something here")
+            func()
+            print("Original function is finished")
+        return wrapper
+
+    new_func = my_decorator(myfunc)
+    new_func()
+     #Do something here
+     #My name is Praj
+     #Original function is finished
+
+    ---- now with my decorator ----
+    def my_decorator(func):
+        def wrapper():
+            print("Do something here")
+            func()
+            print("Original function is finished")
+        return wrapper
+
+    @my_decorator
+    def myfunc():
+        print("My name is Praj")
+
+    myfunc()
+
+     #Do something here
+     #My name is Praj
+     #Original function is finished
+
+Generators:
+ typically put into function
+ saves ram from overloaded memory
+    def myfunc():
+        for num in range(14):
+            yield num ** num
+
+
+    total = myfunc()
+    print(total)
+     #<generator object myfunc at 0x108cddb40>
+    ----------
+    def my_generator():
+        for num in range(14):
+            yield num ** num
+
+
+    for big_num in my_generator():
+        print(big_num)
+    
+     #1
+     #1
+     #4
+     #27
+     #256
+     #3125
+     #46656
+     #823543
+    #16777216
+     #387420489
+     #10000000000
+     #285311670611
+     #8916100448256
+     #302875106592253
+
+    ------- transformed to list --------
+    def my_generator():
+        for num in range(14):
+            yield num ** num
+
+
+    all_numbers = list(my_generator())
+    print(all_numbers)
+
+
+
+    [1, 1, 4, 27, 256, 3125, 46656, 823543, 16777216, 387420489, 10000000000, 285311670611, 8916100448256, 302875106592253]
+    --- Continually make new generators (cares to perform once) ----
+    def my_generator():
+        for num in range(14):
+            yield num ** num
+
+    my_var_gen = my_generator()
+    all_numbers = list(my_var_gen)
+    print(all_numbers)
+
+    for big_num in my_generator():
+        print(big_num)
+    
+Pipenv: for different python version in virtual enviornemnt
+    ~ pip install pipenv
+    ~ pipenv install
+    ~ pipenv shell (to start enviornment)
+    ~ ctrl + d then exit to leave
+    ~ pip install Django==2.* 
+    ~ pip show Django
+    ctrl + d
+    ~ pipenv --rm
+    ~ pipenv install Django==3.1
+
+Project:
+    Banking App
+    Class Based
+    Withdrawal and Deposit
+    Write the transaction to a python file
+    while True:
+    input
+    classes 
+    Method
+    Properties
+    open()
