@@ -1,0 +1,179 @@
+UTF-8 permits emojis
+viewport content is important Keep As is
+() is considered a function
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <style>
+
+    body {
+        background-color: blue;
+    }
+    @media (max-width: 640px) {
+        body {
+            background-color: red;
+                }
+            }
+            </style>
+
+
+            <body>
+                
+            </body>
+            </html>
+
+        When approaching there is mobile and desktop firsts (check desktop first above and mobile below)
+                <style>
+
+        body {
+            background-color: red;
+        }
+        @media (min-width: 640px) {
+            body {
+                background-color: blue;
+            }
+        }
+        </style>
+
+
+        <body>
+            
+        </body>
+
+To create responsive embed utilize @media 
+        <style>
+
+        body {
+            background-color: red;
+        }
+        @media (min-width: 640px) {
+            body {
+                background-color: blue;
+            }
+        }
+        img {
+            width: 20%;
+            height: auto;
+        }
+        @media (max-width: 640px) {
+            img {
+                width: 100%;
+            }
+        }
+        .container {
+            position: relative;
+            overflow: auto;
+            width: 100%;
+            padding-top: 56.25%; (percentage of aspect ratio 9/16)
+        }
+
+        .container iframe {
+            position:absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
+        </style>
+
+
+        <body>
+            <img src="https://images.unsplash.com/photo-1579541814924-49fef17c5be5?q=80&w=1570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+            <hr>
+            <div class="container"><iframe width="560" height="315" src="https://www.youtube.com/embed/yx6r_JHxwHs?si=dVo9ME28OFRRzFqQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            
+
+        </body>
+        </html>
+
+Creating multiple media queries with media
+
+        .box {
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+            margin: 50px auto;
+            border-radius: 0;
+        }
+        @media (max-width: 1000px) and (min-width: 700px) {
+            .box {
+                border-radius: 50%;
+            }
+        }
+        </style>
+
+
+        <body>
+        <div class="box"></div>
+        
+Styling with nav, sidebar, and content
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+body {
+    padding: 0;
+    margin: 0;
+
+}
+#layout {
+    display: flex;
+    flex-wrap: wrap;
+}
+#nav {
+    flex-basis: 100%;
+    border-bottom: 1px solid #aaa;
+    padding: 20px;
+}
+#sidebar {
+    flex-basis: 20%;
+    border-right: 1px solid #aaa;
+    padding: 20px;
+    border-bottom: 1px solid #aaa;
+}
+#content {
+    flex-basis: 80%;
+    border-bottom: 1px solid #aaa;
+    padding: 20px;
+    
+}
+@media (max-width: 640px) {
+    #sidebar, #content {
+        flex-basis: 100%;
+        border-right: 0;
+    }
+}
+
+@media (max-width: 475px) {
+    #sidebar {
+        display: none;
+            }
+        }
+
+        </style>
+
+
+        <body>
+        <div id="layout">
+
+            <div id="nav"> Navigation in Here </div>
+        <div id="sidebar"> Sidebar in Here </div>  
+            <div id="content"> Content in Here </div>
+        </div>
+        </body>
+        </html>
