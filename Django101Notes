@@ -1,0 +1,395 @@
+~python3 -V
+~ pip install pipenv
+~pipenv install Django
+~ pipenv shell
+~ pip show Django
+~ to exit ctrl D 
+~ to reenter pipenv shell
+~ django-admin startproject mysite .
+  will see that manage.py and mysite appear
+~ python3 manage.py runserver 0.0.0.0:8000
+http://localhost:8000/
+~python manage.py createsuperuser
+type in username, email, and password in terminal
+~python manage.py startapp feed
+type 'feed' in mysite settings Installed_Apps
+~python3 manage.py runserver 0.0.0.0:8000
+No need to manage database in Django (automated through migration)
+In feed 'models.py' type in class Post
+ from django.db import models
+
+ class Post(models.Model):
+    text = models.CharField(max_length=140, blank=False, null=False)
+~ python manage.py makemigrations
+ creates migrations folder in feed folder (check 0001_initial.py file)
+~python manage.py migrate
+~python3 manage.py runserver 0.0.0.0:8000
+
+In admin.py file in feed 
+from django.contrib import admin
+from .models import Post
+
+class PostAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Post, PostAdmin)
+------ after adding post in web page in views.py ----
+from django.db import models
+
+class Post(models.Model):
+    text = models.CharField(max_length=140, blank=False, null=False)
+
+    def __str__(self):
+        return self.text
+
+First Django View ---
+-- urls.py feed --
+from django.urls import path 
+from .views import HomePageView
+
+app_name = 'feed'
+
+urlpatterns = [
+    path('', HomePageView.as_view(), name = 'index'),
+]
+
+--- urls.py mysite ---
+
+from django.contrib import admin
+from django.urls import path
+from django.conf.urls import include
+
+from feed import urls as feed_urls
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include(feed_urls, namespace = 'feed')),
+]
+
+--views.py feed--
+from django.views.generic import TemplateView
+
+class HomePageView(TemplateView):
+    template_name = "home.html"
+
+Go to settings.py and include template_dir to dir
+TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [TEMPLATE_DIR],
+
+Setting up Templates Folder
+    create template/home.html to show html webpage
+
+    after setting up templates/base.html
+    {% extends "base.html" %}
+
+    {% block body %}
+        Stuff in here from home.html 
+    {% endblock %}
+    ---- base .html ---
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Image Sharer</title>
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+    </body>
+    </html>
+
+--- block title ----
+ <title>{% block title %}{% endblock %}</title>
+--- home page ---
+{% block title %} Home Page {% endblock %}
+
+Adding custom view context
+--- in views.py ---
+    from django.views.generic import TemplateView
+
+    class HomePageView(TemplateView):
+        template_name = "home.html"
+
+        def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            context['my_thing'] = "Hello World :p"
+            return context
+--- In home.html
+    {% block body %}
+        <h1> {{my_thing}} </h1> 
+    {% endblock %}
+
+Can see templates views in ccbv.co.uk
+    from django.views.generic import TemplateView
+
+from .models import Post
+-- in views.py after creating two more posts in /admin--
+class HomePageView(TemplateView):
+    template_name = "home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['posts'] = Post.objects.all()
+        return context
+-- in homes.html --
+{% block body %}
+    {% for post in posts %}
+        show me a thing
+        <hr>
+    {% endfor %}
+{% endblock %}
+-- in homes.html --
+{% extends "base.html" %}
+
+{% block title %} Home Page {% endblock %}
+
+{% block body %}
+    {% for post in posts %}
+        {{post}}
+        <hr>
+    {% endfor %}
+{% endblock %}
+
+Adding images
+search for django thumbnail package 
+~pip install sorl-thumbnail
+add 'sorl.thumbnail', to installed_apps in settings.py
+adjust models.py accordingly
+    from django.db import models
+    from sorl.thumbnail import ImageField
+
+    class Post(models.Model):
+        text = models.CharField(max_length=140, blank=False, null=False)
+        image = ImageField()
+
+        def __str__(self):
+            return self.text
+~python3 manage.py runserver 0.0.0.0:8000
+~python -m pip install Pillow
+~python manage.py makemigrations
+ press 1 and 1 again in enviornment
+~python3 manage.py runserver 0.0.0.0:8000
+new migration file created 
+
+Creating media folder
+-- in settings.py --
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+-- in urls.py mysite --
+from django.conf import settings
+from django.conf.urls import include
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import path
+
+
+from feed import urls as feed_urls
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include(feed_urls, namespace = 'feed')),
+
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+Adding images to home template
+--- in home.html ---
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block title %} Home Page {% endblock %}
+
+{% block body %}
+    {% for post in posts %}
+        {{post.text}}
+
+        <br>
+        {% thumbnail post.image "300x200" crop="center" as im %}
+            <img src="{{post.image.url}}" width="{{ im.width }}" height="{{ im.height }}">
+        {% endthumbnail %}
+        <hr>
+    {% endfor %}
+{% endblock %}
+
+Adding Detail View
+-- in views.py --
+from django.views.generic import TemplateView, DetailView
+
+from .models import Post
+
+class HomePageView(TemplateView):
+    template_name = "home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['posts'] = Post.objects.all()
+        return context
+-- in urls.py feed -- pk = primary key
+from django.urls import path 
+from .views import HomePageView
+
+app_name = 'feed'
+
+urlpatterns = [
+    path('', HomePageView.as_view(), name = 'index'),
+    path('detail/<int:pk>/', PostDetailView.as_view(), name = 'detail')
+]
+
+-- in template/detail.html --
+{% extends "base.html" %}
+
+{% block title %} Detail View {% endblock %}
+
+{% block body %}
+    This is where my image will go
+{% endblock %}
+
+-- full form --
+{% extends "base.html" %}
+
+{% block title %} Detail View {% endblock %}
+
+{% block body %}
+    <h3>Text</h3>
+    {{ Object.text }}
+    <h3>Image</h3>
+    <img src ="{{ object.image.url }}" style ='width: 100%; height: auto;'
+{% endblock %}
+
+Linking other Django views to template
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block title %} Home Page {% endblock %}
+
+{% block body %}
+    {% for post in posts %}
+        <a href = "{% url 'feed:detail' post.id %}"> View Details </a>    
+    
+        {{post.text}}
+        <br>
+        {% thumbnail post.image "300x200" crop="center" as im %}
+            <img src="{{post.image.url}}" width="{{ im.width }}" height="{{ im.height }}">
+        {% endthumbnail %}
+        <hr>
+    {% endfor %}
+{% endblock %}
+
+-- detail.html with go back button --
+{% extends "base.html" %}
+
+{% block title %} Detail View {% endblock %}
+
+{% block body %}
+    <a href="{% url 'feed:index' %}">Go back</a>
+    <h3>Text</h3>
+    {{ Object.text }}
+    <h3>Image</h3>
+    <img src ="{{ object.image.url }}" style ='width: 100%; height: auto;'
+{% endblock %}
+
+Adding an upload form
+-- forms.py --
+from django import forms
+
+class PostForm(forms.Form):
+    text = forms.CharField()
+    image = forms.FileField()
+    
+-- views.py ---
+from django.views.generic import TemplateView, DetailView, FormView
+
+from .forms import PostForm
+from .models import Post
+
+class HomePageView(TemplateView):
+    template_name = "home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['posts'] = Post.objects.all()
+        return context
+    
+class PostDetailView(DetailView):
+    template_name = "detail.html"
+    model = Post
+
+class AddPostView(FormView):
+    template_name = "new_post.html"
+    form_class = PostForm
+    success_url = "/"
+
+-- new_post.html --
+{% extends "base.html" %}
+
+{% block title %} Upload a new image {% endblock %}
+
+{% block body %}
+    {{ form.as_p }}
+{% endblock %}
+
+-- views.py --
+from django.views.generic import TemplateView, DetailView, FormView
+
+from .forms import PostForm
+from .models import Post
+
+class HomePageView(TemplateView):
+    template_name = "home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['posts'] = Post.objects.all()
+        return context
+    
+class PostDetailView(DetailView):
+    template_name = "detail.html"
+    model = Post
+
+class AddPostView(FormView):
+    template_name = "new_post.html"
+    form_class = PostForm
+    success_url = "/"
+    
+    def form_valid(self, form):
+        new_object = Post.objects.create(
+           text = form.cleaned_data['text'],
+           image = form.cleaned_data['image']
+        )    
+
+        return super().form_valid(form)
+
+
+-- home.html --
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block title %} Home Page {% endblock %}
+
+{% block body %}
+
+    <a href="{% url 'feed:post' %}">Add new post</a>
+    <hr>
+    {% for post in posts %}
+        <a href = "{% url 'feed:detail' post.id %}" style="display: inline-block;">  
+
+            {{post.text}}
+            <br>
+            {% thumbnail post.image "300x200" crop="center" as im %}
+                <img src="{{post.image.url}}" width="{{ im.width }}" height="{{ im.height }}">
+            {% endthumbnail %}
+            
+
+
+        </a>   
+        <hr> 
+    
+       
+    {% endfor %}
+{% endblock %}
