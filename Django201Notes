@@ -1,0 +1,344 @@
+~pip install pipenv
+~pip show pipenv
+~pipenv install Django
+~pipenv shell
+~exit to leave pipenv shell
+~rm -rf .venv/ if another virtual enviornment is present
+~ pip install Django if Django is not installed in the virtual enviornment
+~django-admin startproject til .
+ creates new project file called til 
+~python manage.py runserver 0.0.0.0:8000
+~python manage.py migrate
+~python manage.py createsuperuser
+~python manage.py startapp feed
+add 'feed' in settings.py
+
+after creating model:
+from django.db import models
+
+class Post(models.Model):
+    text = models.CharField(max_length=240)
+~python manage.py makemigrations
+ creates 0001_initial.py where id and text are outlined
+~python manage.py migrate
+
+In admin.py:
+from django.contrib import admin
+from .models import Post
+
+class PostAdmin(admin.ModelAdmin):
+    pass
+--in models.py--
+admin.site.register(Post, PostAdmin)
+
+from django.db import models
+
+class Post(models.Model):
+    text = models.CharField(max_length=240)
+
+    def __str__(self):
+        return self.text[0:100] #shows post details instead of post object(1)
+
+Adding date and time:
+--in models.py:--
+from django.db import models
+
+class Post(models.Model):
+    text = models.CharField(max_length=240)
+    date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.text[0:100]
+When given this error from addition of date and time:
+OperationalError at /admin/feed/post/
+use the below syntax:
+~python manage.py makemigrations
+~python manage.py migrate 
+~python manage.py runserver 0.0.0.0:8000
+auto_now makes it non-editable
+
+Home page ListView:
+--in views.py --
+from django.views.generic import ListView
+from .models import Post
+
+class HomePage(ListView):
+    http_method_names = ["get"]
+    template_name = "homepage.html"
+    model = Post 
+    context_object_name = "posts"
+    queryset = Post.objects.all().order_by('-id')[0:30]
+
+--in urls.py til --
+from django.contrib import admin
+from django.conf.urls import include
+from django.urls import path
+from feed import urls as feed_urls
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path("", include(feed_urls, namespace="feed"))
+]
+
+--in urls.py feed --
+from django.urls import path 
+from . import views
+
+
+app_name = "feed"
+
+urlpatterns =[
+    path("", views.HomePage.as_view(), name = "index")
+]
+
+
+
+Setting up template Locations:
+--settings.py lines 12 thru 17--
+import os 
+from pathlib import Path
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+--settings.py lines 60 thru 62 --
+        'DIRS': [
+            os.path.join(PROJECT_DIR, "til/templates")
+        ],
+
+then created templates/homepage.html inside til folder
+then creates templates/feed/homepage.html in feed folder
+updated 
+from django.views.generic import ListView
+from .models import Post
+
+class HomePage(ListView):
+    http_method_names = ["get"]
+    template_name = "feed/homepage.html" #update#
+    model = Post 
+    context_object_name = "posts"
+    queryset = Post.objects.all().order_by('-id')[0:30]
+
+Base html:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base file</title>
+</head>
+<body>
+    BASE FILE here
+</body>
+</html>
+--homepage.html--
+{% extends 'base.html' %}
+
+Template blocks
+--homepage.html--
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Changed the title
+{% endblock %}
+
+{% block body %}
+This is from the homepage
+{% endblock %}
+--base.html--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Default title here{% endblock %}</title>
+</head>
+<body>
+    This is extending from base.html 
+    {% block body%} {% endblock %}
+</body>
+</html>
+
+Template Loops:
+--in homepage.html--
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Changed the title
+{% endblock %}
+
+{% block body %}
+    
+    {% for post in posts %}
+        {{post.text}} writen at {{post.date}}
+        <hr>
+    {% endfor %}
+        
+
+{% endblock %}
+
+Adding login system:
+~pip install django-allauth OR 
+~pipenv install django-allauth depending if you want to do it in virtual enviornment
+django allauth docs
+--in urls.py til --
+from django.contrib import admin
+from django.conf.urls import include
+from django.urls import path
+from django.urls import re_path as url
+from feed import urls as feed_urls
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path("", include(feed_urls, namespace="feed")),
+    url("", include("allauth.urls")),
+]
+-settings.py--
+lines 128 to 146
+
+SITE_ID = 1
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "optional"
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
+ACCOUNT_LOGOUT_REDIRECT = '/'
+ACCOUNT_PRESERVE_USERNAME_CASING = False
+ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = 2
+AUTHHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend"
+)
+
+line 56
+'allauth.account.middleware.AccountMiddleware'
+
+lines 41 thru 46
+    'django.contrib.sites',
+    'feed',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+]
+
+Global login and logout system 
+--in base.html --
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Default title here{% endblock %}</title>
+</head>
+<body>
+    {% if request.user.is_authenticated %}
+        <a href= "{% url 'account_logout' %}"> Logout</a>
+    {% else %}
+        <a href="{% url 'account_login' %}"> Login</a>
+    {% endif %}
+    <hr>
+    {% block body%} {% endblock %}
+</body>
+</html>
+
+Adding profiles:
+~python manage.py startapp profiles
+~python manage.py makemigrations
+~python manage.py migrate 
+
+Adding thumbnail package:
+~pipenv install sorl-thumbnail 
+~pipenv show sorl-thumbnail
+add 'sorl.thumbnail' into installed app in settings.py
+~pip manage.py migrate 
+--models.py profiles--
+from django.contrib.auth.models import User
+from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from sorl.thumbnail import ImageField
+
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name="profile"
+    )
+    image = ImageField(upload_to='profiles')
+
+def __str__(self):
+    return self.user.username
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    """Create a new Profile() object when a Django User is created."""
+    if created:
+        Profile.objects.create(user=instance)
+
+~pipenv install Pillow
+~python manage.py makemigrations
+enter 1 and then >>>1
+~python manage.py migrate
+
+Adding media settings:
+
+Adding Authors to Posts:
+--in models.py 'feed' folder--
+from django.contrib.auth.models import User
+from django.db import models
+
+class Post(models.Model):
+    text = models.CharField(max_length=240)
+    date = models.DateTimeField(auto_now=True)
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return self.text[0:100]
+
+~python manage.py makemigrations
+~python manage.py migrate
+
+Adding author details to post templates:
+
+Post detail template:
+
+Forcing authentication:
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+Adding Tailwind Modal:
+
+Enabling static files:
+~python manage.py collectstatic
+~python manage.py collectstatic --no-input
+
+adding jquery
+
+Ajaxing new post:
+functionalities in main.js
+
+
+Profile Detail View:
+
+Profile Detail Template:
+
+Total Post:
+
+
+Project:
+Responsive page
+show number of followers
+change front end template for login page
+add new section to update first name and last name, username and password and upload image
