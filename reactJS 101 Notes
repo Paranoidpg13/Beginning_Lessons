@@ -1,5 +1,9 @@
 React JS is JS library for building user interfaces
 
+
+~npm install -g create-react-app
+~npx create-react-app my-app
+
 allows dynamic pages
 uses jsx -> similar to JS
 
