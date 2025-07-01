@@ -1,5 +1,8 @@
 going from class component to function components (101 to 201)
 
+~npm install -g create-react-app
+~npx create-react-app my-app
+
 to stop react:
 sudo killall -9 node
 
